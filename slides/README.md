@@ -1,0 +1,3 @@
+- 🚀 [reveal.js](https://revealjs.com/installation)
+- 🎬 `npm run start`
+- edit `index.html` to make things happen
