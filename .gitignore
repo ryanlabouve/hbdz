@@ -9,3 +9,7 @@ log/*.log
 tmp/**
 node_modules/
 .sass-cache
+.vagrant/*
+/range/.vagrant/*
+*.crt
+*.key

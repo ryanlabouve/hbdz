@@ -1,0 +1,75 @@
+---
+
+- name: Configure a webserver with NGINX
+  hosts: webservers
+  become: yes
+  vars:
+    - tls_dir: /etc/nginx/ssl/
+    - key_file: nginx.key
+    - cert_file: nginx.crt
+    - conf_file: /etc/nginx/sites-available/default
+    - server_name: localhost
+  tasks:
+    - name: Hold on to your butts
+      debug:
+        msg: "Initiating NGINX playbook"
+
+    - name: Ensure NGINX is installed
+      package: name=nginx update_cache=yes
+
+    - name: Copy nginx config file
+      template:
+        src: nginx.conf.j2
+        dest: "{{ conf_file }}"
+        mode: 0644
+      notify:
+        - Restart NGINX
+
+    - name: Create directories for TLS certs
+      file:
+        path: "{{ tls_dir }}"
+        state: directory
+        mode: 0750
+      notify:
+        - Restart NGINX
+
+    - name: Copy TLS files
+      copy:
+        src: "{{ item }}"
+        dest: "{{ tls_dir }}"
+        mode: 0600
+      loop:
+        - "{{ key_file }}"
+        - "{{ cert_file }}"
+      notify:
+        - Restart NGINX
+    - name: Enable configuration
+      file:
+        src: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-enabled/default
+        state: link
+
+    - name: Copy index.html
+      template:
+        src: templates/index.html.j2
+        dest: /usr/share/nginx/html/index.html
+
+    - name: Restart nginx
+      meta: flush_handlers
+
+    - name: "Test it! https://localhost:8443/index.html"
+      delegate_to: localhost
+      become: false
+      uri:
+        url: https://localhost:8443/index.html
+        validate_certs: no
+        status_code: 200
+        return_content: yes
+      register: this
+      failed_when: this.status != 200
+      tags:
+        - test
+
+  handlers:
+    - name: Restart NGINX
+      service: name=nginx state=restarted
