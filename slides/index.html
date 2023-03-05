@@ -1,56 +1,104 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/invader.css">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/invader.css">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<h1>
-						Hunting Before Day Zero
-					</h1>
-					<p>
-						By Ryan LaBouve
-					</p>
-				</section>
-				<section>
-					<h1>$ whoami</h1>
-					<section>
-						boop
-					</section>
-					<section>
-						beep
-					</section>
-				</section>
-				<section>Slide e</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>
+                Hunting Before Day Zero
+            </h1>
+            <p>
+                By Ryan LaBouve
+            </p>
+        </section>
+        <section>
+            <p>$ whoami</p>
+            <section>
+                <h2>
+                    Ryan LaBouve
+                </h2>
+                <p>
+                <ul>
+                    <li> Founder of Startup.Security</li>
+                    <li>Disaster Recovery <br><small>(storms not hard-drives)</small></li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <h2>
+                    Startup.Security
+                </h2>
+                <ul>
+                    <li>Security the tools, technologies, companies that are building the future (we want)</li>
+                    <li>Helping series A,B,C startups kickstart security</li>
+                    <li>Security Research</li>
+                </ul>
+                </p>
+            </section>
+            <section>
+                <p>My Path</p>
+                <ul>
+                    <li>👇 Software engineer</li>
+                    <li>👇 DevOps+SysAdmin</li>
+                    <li>👉 Offensive Security</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <h2>Today's Agenda</h2>
+            <section>
+                <ol>
+                    <li>
+                        <b>Problem statement</b>
+                    </li>
+                    <li>
+                        <b>Story mode</b><br> <small>Running into signs of compromise</small>
+                    </li>
+                    <li>
+                        <b>Signals of compromise</b><br><small>philosophy and methodology</small>
+                    </li>
+                    <li>
+                        <b>Signals in the wild</b>
+                    </li>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+                </ol>
+            </section>
+        </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        <section>
+            <blockquote>Let me tell you
+            </blockquote>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+</script>
+</body>
 </html>
