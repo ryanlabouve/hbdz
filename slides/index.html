@@ -139,42 +139,56 @@
                 </ul>
             </section>
             <section>
+                <p>Client:</p>
                 <img alt="Logo to fake co" src="./assets/hyperion-logo.png" style="width: 50%;"/>
             </section>
             <section>
-                <h3>A <small>micro</small> service with no firewall</h3>
+                <h3>Client goal: stand up firewall on a microservice</h3>
                 <p>Critical service</p>
-                <p style="margin-left: 1em;">Needs to be protected</p>
-                <p style="margin-left: 1em;">Cannot go down</p>
+                <p>Service cannot go down</p>
             </section>
             <section>
-                <h3>Startups in growth mod</h3>
+                <h3>Startups in hyper-growth</h3>
                 <p>
                     Growth is prioritied over everything (e.g. security)
                 </p>
+                <p>
+                    Microservices a popular choice for companies in hyper-growth mode
+                </p>
             </section>
             <section>
-                <h3>Microservices in growth mode!</h3>
+                <h3>Microservices growth mode math!</h3>
                 <p>
-                    Popular choice for companies in hyper-growth mode
+                    I can...
                 </p>
                 <p>
-                    Bad math of: "I can divide the problem into smaller problems, hire teams to solve all of those
-                    smarller problems. If I have 1000 problems, I can hire 1000 teams! And solve at the rate of one
-                    problem
+                    i. "divide big problems into smaller problems
                 </p>
                 <p>
-                    (You now also have 1000 poorly archetected microservices)
+                    ii. "Hire 1 teams to solve 1 problem"
                 </p>
+                <p>
+                    iii. 1000 problems? 1000 teams! QED
+                </p>
+            </section>
+            <section>
+
+                <p>
+                    TODO: Make the dinosaur cry and saying something sad
+                </p>
+                <img src="./assets/mmm.png" alt="dinosauers crying">
             </section>
             <section>
                 <h3>Microservices 101</h3>
                 <p>Do one small thing!</p>
                 <p></p>
-                <p>North-South vs East West traffice</p>
+                <p>North-South vs East West traffic</p>
                 <p>
-                    Common for large comapnies to have 100's of microservices
+                    Common for large companies to have 100's of microservices
                 </p>
+            </section>
+            <section>
+                Back to our story
             </section>
             <section>
                 <h3>Infra at hyperion</h3>
@@ -188,49 +202,40 @@
             </section>
             <section>
                 <h3>RBAC service at hyperion</h3>
-                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
                 <p>
-                    TOdo zoom into RBAC service
+                    Authorizes user actions
                 </p>
                 <p>
-                    Let's think about traffic
+                    TODO: insert diagram about an authorization
                 </p>
             </section>
             <section>
-                <h3>RBAC service at hyperion</h3>
-                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
+                <h3>Traffic patterns for RBAC service</h3>
+                <p>TODO: diagram</p>
                 <p>
-                    EW traffice to other services
+                    EW traffic to other services
                 </p>
                 <p>
                     Code deploys
                 </p>
                 <p>
-                    Maintainece / Troubleshooting from SRE's
-                </p>
-            </section>
-
-            <section>
-                <h3>Product Review </h3>
-                <p>
-                    What does this service do?
-                </p>
-                <p>
-                    API asks "is a user authorized for X"
-                    It's a cache and it's fast
-                    How does this work?
-                    Another service proves "I am who I say I am"
-                    RBAC service caches the result
+                    Maintinace / Troubleshooting from SRE's
                 </p>
             </section>
 
             <section>
                 <h3>Technical Review of RBAC service</h3>
                 <p>
+                    Node API: /api/v1/authorize?user_id=1&resource_id=2&action=3
+                    // => yes
+                    // => no
+                </p>
+                <p>
                     Redis cache
                 </p>
                 <p>
-
+                    Direct connection to user database
+                    (just to simplify, maybe there's a user service in reality)
                 </p>
             </section>
 
@@ -272,6 +277,9 @@
                 <code>
                     sudo tcpdump 'tcp[tcpflags] & tcp-syn != 0'
                 </code>
+                <p>
+                    TODO: TCP dump demo
+                </p>
             </section>
             <section>
                 <h3>TCPDump (demo)</h3>
@@ -283,35 +291,48 @@
                 <h3>
                     LibPCAP
                 </h3>
+                <p>
+                    Libpcap is a library for capturing and processing network packets in real-time
+                </p>
             </section>
             <section>
                 <h3>
                     eBPF
                 </h3>
+                <p>
+                    eBPF is a virtual machine that runs in the kernel and allows you to write programs that
+                    can be attached to various kernel hooks.
+                </p>
             </section>
             <section>
                 <h3>
                     LibPCAP vs eBPF
                 </h3>
+                <aside class="notes">
+                    eBPF and libpcap are both libraries used for capturing and processing network packets
+
+                    eBPF is a more advanced / flexible. Wider range of tasks. User code in kernel.
+
+                    libpcap is a simpler library that provides a platform-independent API for capturing and processing
+                    network packets.
+                </aside>
             </section>
             <section>
                 <h3>
-                    GoLang tool to SYN / SYN-ACK track
+                    Our solution: <br> agent to track SYN / SYN-ACK
                 </h3>
-                <p>
-                    Runs as an agent
-                </p>
                 <p>
                     Spits out counts to prom
                 </p>
                 <p>
-                    transforms output to a ufw config
+                    transforms output to firewall
                 </p>
             </section>
             <section>
                 <h3>
                     Demo of tool
                 </h3>
+                <p>TODO: create demo of tool</p>
             </section>
         </section>
 
@@ -333,7 +354,7 @@
                 <p>TODO: Image</p>
             </section>
             <section>
-                <h3>Figuring out what's up</h3>
+                <h3>SUS: Tracking traffic</h3>
                 <p>TODO: Log into machine and see something weird</p>
             </section>
         </section>
