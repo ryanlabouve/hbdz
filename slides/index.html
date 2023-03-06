@@ -65,38 +65,48 @@
         <!-- ############################################# -->
         <!-- 00. SET THE STAGE -->
         <!-- ############################################# -->
+
         <section>
             <h2>Today's Agenda</h2>
+        </section>
+        <section>
+            <small>Today's Agenda</small>
             <section>
                 <blockquote>
                     Understanding fundamental signals from Linux gives us insight to compromise.
                 </blockquote>
             </section>
-            <section>
+            <section style="text-transform: uppercase;">
                 <ol>
                     <li>
-                        <b>Story mode</b><br> <small>Running into signs of compromise</small>
+                        <b>STORY MODE</b><br> <small>Running into signs of compromise</small>
                     </li>
                     <li>
                         <b>Signals of compromise</b><br><small>philosophy and methodology</small>
                     </li>
                     <li>
-                        <b>Signals in the wild</b>
+                        <b>Signals in the wild</b><br><small>Conclusions and perspective</small>
                     </li>
                 </ol>
             </section>
             <section>
-                <h3>What you'll get out of this</h3>
-                <section>
-                   <h4>Beginner / Intermediate Practitioner</h4>
-                    <p>
-                        Better understanidng of the signals available from Linux and how they can lead to situational system awareness.
-                    </p>
-                    <h4>Intermediate / Advanced Practitioner</h4>
-                    <p>
-                        Fundamental (but basic) signals produced by our hosts give us the ability to hunt novel vulnerabilities, using first principles and system level situational awareness.
-                    </p>
-                </section>
+                <h3>What you'll get out of this?</h3>
+            </section>
+            <section>
+                <small>What you'll get out of this</small>
+                <h4>Beginner / Intermediate Practitioner</h4>
+                <p>
+                    Better understanidng of the signals available from Linux and how they can lead to situational
+                    system awareness.
+                </p>
+            </section>
+            <section>
+                <small>What you'll get out of this</small>
+                <h4>Intermediate / Advanced Practitioner</h4>
+                <p>
+                    Fundamental (but basic) signals produced by our hosts give us the ability to hunt novel
+                    vulnerabilities, using first principles and system level situational awareness.
+                </p>
             </section>
         </section>
 
@@ -114,7 +124,19 @@
                 I: STORY MODE: RUNNING INTO SIGNS OF COMPROMISE
             </small>
             <section>
-                How to accidentally discover a zero-day
+                <blockquote>
+                    How to accidentally<br> discover a zero-day
+                </blockquote>
+            </section>
+            <section>
+                <h3>Zero-day</h3>
+                <p>
+                    A vulnerability that has not been publicly disclosed.
+                </p>
+                <ul>
+                    <li>No way to track proactively</li>
+                    <li>No patch</li>
+                </ul>
             </section>
             <section>
                 <img alt="Logo to fake co" src="./assets/hyperion-logo.png" style="width: 50%;"/>
@@ -124,6 +146,425 @@
                 <p>Critical service</p>
                 <p style="margin-left: 1em;">Needs to be protected</p>
                 <p style="margin-left: 1em;">Cannot go down</p>
+            </section>
+            <section>
+                <h3>Startups in growth mod</h3>
+                <p>
+                    Growth is prioritied over everything (e.g. security)
+                </p>
+            </section>
+            <section>
+                <h3>Microservices in growth mode!</h3>
+                <p>
+                    Popular choice for companies in hyper-growth mode
+                </p>
+                <p>
+                    Bad math of: "I can divide the problem into smaller problems, hire teams to solve all of those
+                    smarller problems. If I have 1000 problems, I can hire 1000 teams! And solve at the rate of one
+                    problem
+                </p>
+                <p>
+                    (You now also have 1000 poorly archetected microservices)
+                </p>
+            </section>
+            <section>
+                <h3>Microservices 101</h3>
+                <p>Do one small thing!</p>
+                <p></p>
+                <p>North-South vs East West traffice</p>
+                <p>
+                    Common for large comapnies to have 100's of microservices
+                </p>
+            </section>
+            <section>
+                <h3>Infra at hyperion</h3>
+                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
+                <p>
+                    TOdo annotate traffic flow
+                </p>
+                <p>
+                    We've simplified the infra a bit.
+                </p>
+            </section>
+            <section>
+                <h3>RBAC service at hyperion</h3>
+                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
+                <p>
+                    TOdo zoom into RBAC service
+                </p>
+                <p>
+                    Let's think about traffic
+                </p>
+            </section>
+            <section>
+                <h3>RBAC service at hyperion</h3>
+                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
+                <p>
+                    EW traffice to other services
+                </p>
+                <p>
+                    Code deploys
+                </p>
+                <p>
+                    Maintainece / Troubleshooting from SRE's
+                </p>
+            </section>
+
+            <section>
+                <h3>Product Review </h3>
+                <p>
+                    What does this service do?
+                </p>
+                <p>
+                    API asks "is a user authorized for X"
+                    It's a cache and it's fast
+                    How does this work?
+                    Another service proves "I am who I say I am"
+                    RBAC service caches the result
+                </p>
+            </section>
+
+            <section>
+                <h3>Technical Review of RBAC service</h3>
+                <p>
+                    Redis cache
+                </p>
+                <p>
+
+                </p>
+            </section>
+
+            <section>
+                <h3>What could happen if we compromised this </h3>
+                <p>
+                    poison Redis cache
+                </p>
+                <p>
+                    Exfil the data
+                </p>
+                <p>
+                    Move laterally
+                </p>
+            </section>
+            <section>
+                <h3>How are we going to bring a firewall up?</h3>
+                <p>Identify everyday traffic</p>
+                <p>Identify maintence traffic</p>
+                <p>Identify deploy traffic</p>
+                <p>Exercise 1</p>
+            </section>
+        </section>
+
+        <section>
+            <small>
+                I. STORY MODE: (EXERCISE) SYN / SYN-ACK's
+            </small>
+            <section>
+                <h3>Our First Signals: SYN / SYN-ACK's</h3>
+                <p>Image of syn and syn-ack in TCP</p>
+            </section>
+            <section>
+                <h3>Wireshark</h3>
+                <p>TODO: Wireshark demo</p>
+            </section>
+            <section>
+                <h3>TCPDump</h3>
+                <code>
+                    sudo tcpdump 'tcp[tcpflags] & tcp-syn != 0'
+                </code>
+            </section>
+            <section>
+                <h3>TCPDump (demo)</h3>
+                <p>
+                    video demo
+                </p>
+            </section>
+            <section>
+                <h3>
+                    LibPCAP
+                </h3>
+            </section>
+            <section>
+                <h3>
+                    eBPF
+                </h3>
+            </section>
+            <section>
+                <h3>
+                    LibPCAP vs eBPF
+                </h3>
+            </section>
+            <section>
+                <h3>
+                    GoLang tool to SYN / SYN-ACK track
+                </h3>
+                <p>
+                    Runs as an agent
+                </p>
+                <p>
+                    Spits out counts to prom
+                </p>
+                <p>
+                    transforms output to a ufw config
+                </p>
+            </section>
+            <section>
+                <h3>
+                    Demo of tool
+                </h3>
+            </section>
+        </section>
+
+        <section>
+            <h2>
+                I/iii. STORY MODE: A TWIST IN TRAFFIC
+            </h2>
+        </section>
+        <section>
+            <small>
+                I/iii. STORY MODE: A TWIST IN TRAFFIC
+            </small>
+            <section>
+                <h3>After monitoring SYN / SYN-ACK's for a week</h3>
+                <p>Noticed something weird</p>
+            </section>
+            <section>
+                <h3>Unexpected E-W traffic</h3>
+                <p>TODO: Image</p>
+            </section>
+            <section>
+                <h3>Figuring out what's up</h3>
+                <p>TODO: Log into machine and see something weird</p>
+            </section>
+        </section>
+
+        <section>
+            <small>
+                I/iv. STORY MODE: RED TEAM MODE ACTIVATE
+            </small>
+            <section>
+                <p>Emoji before and after red-team mode</p>
+            </section>
+            <section>
+                <p>Scan perimeter</p>
+            </section>
+            <section>
+                <p>Detailed scan on open ports</p>
+            </section>
+            <section>
+                <p>Decide and deliver RCE</p>
+            </section>
+            <section>
+                <p>Pivot into RBAC service</p>
+            </section>
+            <section>
+                <p>Shenanigans!</p>
+                <ul>
+                    <li>Spoof authentication</li>
+                    <li>Exfil user data</li>
+                </ul>
+            </section>
+        </section>
+        <!-- ############################################# -->
+        <!-- ############################################# -->
+        <!-- 02. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY -->
+        <!-- ############################################# -->
+        <section>
+            <h2>
+                II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY
+            </h2>
+        </section>
+        <section>
+            <small>
+                II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY
+            </small>
+            <section>
+                <p>We learned a small signal can reveal quite a bit about a system</p>
+            </section>
+            <section>
+                <h3>Basic vs Specific Signals</h3>
+                <p>
+                    Need to workshop the word here
+
+                    Where do I put the following?
+                    Behavioral analysis
+
+                    Signature based detection (e.g. file names or metadata)
+
+                    Machine learning
+
+                    Threat Intelligence databases
+                </p>
+            </section>
+            <section>
+                <h3>Ex; detecting C2 with specific signals</h3>
+                <p>
+                    Give example of Cobalt running based on processes
+                </p>
+            </section>
+            <section>
+                <h3>Specific signal cat and mouse game</h3>
+
+                <h3>Ex; detecting C2 with basic signals</h3>
+                <p>
+                    Need to workshop the word here
+                </p>
+            </section>
+            <section>
+                <p>What other small signals do we have?</p>
+                <p>
+                    File system
+                </p>
+                <p>
+                    Network
+                </p>
+            </section>
+            <section>
+                <p>To work with small signals successfully we need</p>
+                <p>
+                    way to collect them => eBPF
+                </p>
+                <p>
+                    way to vizualize them => grafana
+                </p>
+                <p>
+                    way to compose them => prometheus
+                </p>
+            </section>
+            <section>
+                <h3>
+                    eBPF
+                </h3>
+                <p>
+                    Run user code in the kernal
+                </p>
+                <p>
+                    What many "big tools" (e.g. CrowdStrike Falcon) uses to monitor endpoints
+                </p>
+                <p>
+                    This will be a recurring theme in tracking signals
+                </p>
+            </section>
+            <section>
+                <h3>
+                    Grafana
+                </h3>
+                <p>
+                    Vizualization tool
+                </p>
+                <p>
+                    Can be used to visualize eBPF data
+                </p>
+                <p>
+                    Implementation detail. Use wahtever you want.
+                </p>
+            </section>
+            <section>
+                <h3>Prometheus Query Language</h3>
+                <p>
+                    Compose and vizualize our fidings
+                </p>
+                <p>
+                    Implementation detail. Use wahtever you want.
+                </p>
+            </section>
+        </section>
+        <section>
+            <h2>
+                II/ii. SIGNALS OF COMPROMISE: FILE ACCESS
+            </h2>
+        </section>
+        <section>
+            <small>
+                II/ii. SIGNALS OF COMPROMISE: FILE ACCESS
+            </small>
+            <section>
+                <p>Primer on files</p>
+            </section>
+            <section>
+                <p>What can we observe about a file</p>
+            </section>
+            <section>
+                <p>Let's look at what's happening to files</p>
+            </section>
+            <section>
+                <p>File Opens</p>
+            </section>
+            <section>
+                <p>Collect: File Opens</p>
+            </section>
+            <section>
+                <p>Vizualize: File Opens</p>
+            </section>
+            <section>
+                <p>Compose: File Opens</p>
+            </section>
+        </section>
+        <section>
+            <h2>
+                II/iii. SIGNALS OF COMPROMISE: NETWORK ACCESS
+            </h2>
+        </section>
+        <section>
+            <small>
+                II/ii. SIGNALS OF COMPROMISE: NETWORK
+            </small>
+            <section>
+                <p>Primer on network access</p>
+                <p>
+                    Wire to desire
+                </p>
+            </section>
+            <section>
+                <p>What can we observe </p>
+            </section>
+            <section>
+                <p>Let's trace what happens when we make an outgoing request</p>
+            </section>
+            <section>
+                <p>Syn / Syn - Acks</p>
+            </section>
+            <section>
+                <p>Collect: SYN SYN-ACK</p>
+            </section>
+            <section>
+                <p>Vizualize: </p>
+            </section>
+            <section>
+                <p>Compose: File Opens</p>
+            </section>
+        </section>
+        <!-- ############################################# -->
+        <!-- ############################################# -->
+        <!-- 03. CONCLUSIONS IN THE WILD -->
+        <!-- ############################################# -->
+        <section>
+            <h2>
+                III. CONCLUSIONS IN THE WILD
+            </h2>
+        </section>
+        <section>
+            <small>
+                III. CONCLUSIONS IN THE WILD
+            </small>
+            <section>
+                <p>Some tools do this</p>
+            </section>
+            <section>
+                <p>Many people lack understanidng in how their systems work</p>
+                <p>C's talk</p>
+            </section>
+            <section>
+                <p>Perfection is many things done well</p>
+            </section>
+            <section>
+                <p>Understanidng your system is not a luxuary, it's a necessity</p>
+            </section>
+            <section>
+                <p>We are not beholden to $$$ to get insights to our system</p>
+            </section>
+            <section>
+                <p>We can hunt before day zero</p>
             </section>
         </section>
     </div>
