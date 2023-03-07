@@ -1,0 +1,79 @@
+---
+- name: Assert usage of systemd as an init system
+  ansible.builtin.assert:
+    that: ansible_service_mgr == "systemd"
+    msg: "This module only works with systemd"
+
+- name: Get systemd version
+  ansible.builtin.command: "systemctl --version"
+  changed_when: false
+  check_mode: false
+  register: __systemd_version
+  tags:
+    - skip_ansible_lint
+
+- name: systemd version fact
+  ansible.builtin.set_fact:
+    prometheus_systemd_version: "{{ __systemd_version.stdout_lines[0].split(' ')[-1] }}"
+
+# TODO: Port whatever I want from https://github.com/prometheus-community/ansible/blob/main/roles/prometheus/tasks/preflight.yml#L19
+#- name: Assert no duplicate config flags
+#- name: Assert external labels aren't configured twice
+
+- name: Set prometheus external metrics path
+  ansible.builtin.set_fact:
+    prometheus_metrics_path: "/{{ (prometheus_web_external_url + '/metrics') | regex_replace('^(.*://)?(.*?)/') }}"
+
+#- name: Fail when promethus config_flags_extra duplicates parameters set by other variables
+
+- name: Get all file_sd files from scrapge configs
+  ansible.builtin.set_fact:
+    file_sd_files: "{{ prometheus_scrape_configs | selectattr('file_sd_configs', 'defined') | map(attribute='file_sd_configs') | flatten | map(attribute='files') | flatten }}"
+
+- name: Fail when file_sd targets are not defined in scrape configs
+  ansible.builtin.fail:
+    msg: >
+      Oh, snap! `{{ item.key }}` couldn't be found in your scrape configs. Please ensure you provided
+      all targets from prometheus_targets in prometheus_scrape_configs
+  when: not prometheus_config_dir + "/file_sd/" + item.key + ".yml" in file_sd_files
+  #  when: not item | basename | splitext | difference(['.yml']) | join('') in prometheus_targets.keys()
+  with_dict: "{{ prometheus_targets }}"
+
+- name: Alert when prometheus_alertmanager_config is empty, but prometheus_alert_rules is specified
+  ansible.builtin.debug:
+    msg: >
+      No alertmanager configuration was specified. If you want your alerts to be sent make sure to
+      specify a prometheus_alertmanager_config in defaults/main.yml.
+  when:
+    - prometheus_alertmanager_config == []
+    - prometheus_alert_rules != []
+
+- name: Discover latest version
+  ansible.builtin.set_fact:
+    prometheus_version: "{{ (lookup('url', 'https://api.github.com/repos/prometheus/prometheus/releases/latest', split_lines=False) |
+                         from_json).get('tag_name') | replace('v', '') }}"
+  run_once: true
+  until: prometheus_version is version('0.0.0', '>=')
+  retries: 10
+  when:
+    - prometheus_version == "latest"
+    - prometheus_binary_local_dir | length == 0
+    - not prometheus_skip_install
+- name: Get promethus binary checksum
+  when:
+    - prometheus_binary_local_dir | length == 0
+    - not prometheus_skip_install
+  block:
+    - name: "Get checksum list"
+      ansible.builtin.set_fact:
+        __prometheus_checksums: "{{ lookup('url', prometheus_checksums_url, wantlist=True) | list }}"
+      run_once: true
+      until: __prometheus_checksums is search('linux-' + go_arch + '.tar.gz')
+      retries: 10
+
+    - name: "Get checksum for {{ go_arch }}"
+      ansible.builtin.set_fact:
+        __prometheus_checksum: "{{ item.split(' ')[0] }}"
+      with_items: "{{ __prometheus_checksums }}"
+      when:
+        - "('linux-' + go_arch + '.tar.gz') in item"

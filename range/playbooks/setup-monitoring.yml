@@ -1,0 +1,12 @@
+---
+- name: Setup grafana
+  hosts: grafana
+  become: yes
+  roles:
+    - role: prometheus
+  vars:
+    agent_binary_location: /usr/local/bin      # Example /usr/local/bin
+    agent_config_location: /etc/grafana-cloud      # Example /etc/grafana-cloud
+    linux_architecture: amd64            # Example linux-amd64
+    agent_config_local_path: linux-agent-config.yml  # Example linux-agent-config.yml
+    agent_version: 0.32.1
