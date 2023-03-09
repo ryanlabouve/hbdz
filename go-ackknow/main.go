@@ -2,61 +2,66 @@ package main
 
 import (
 	"fmt"
-	bpf "github.com/iovisor/gobpf/bcc"
+	"github.com/cilium/ebpf"
 	"os"
 )
 
-const source = `
-#include <uapi/linux/ptrace.h>
-#include <net/sock.h>
-#include <linux/net.h>
-#include <bcc/proto.h>
-
-BPF_PERF_OUTPUT(events);
-
-int on_accept(struct pt_regs *ctx, struct sock *sk) {
-    u16 sport = 0, dport = 0;
-    u32 saddr = 0, daddr = 0;
-
-    bpf_probe_read(&sport, sizeof(sport), &sk->__sk_common.skc_num);
-    bpf_probe_read(&dport, sizeof(dport), &sk->__sk_common.skc_dport);
-    bpf_probe_read(&saddr, sizeof(saddr), &sk->__sk_common.skc_rcv_saddr);
-    bpf_probe_read(&daddr, sizeof(daddr), &sk->__sk_common.skc_daddr);
-
-    if (dport == 80) { // Filter for port 80
-        char msg[] = "wohoo! SYN from ";
-        bpf_trace_printk(msg, sizeof(msg));
-        bpf_trace_printk("%u.%u.%u.%u\n", saddr & 0xff, (saddr >> 8) & 0xff,
-                         (saddr >> 16) & 0xff, (saddr >> 24) & 0xff);
-    }
-
-    return 0;
-}
-`
-
 func main() {
-	m := bpf.NewModule(source, []string{})
-	defer m.Close()
-
-	fn, err := m.Load("on_accept", bpf.Kprobe("inet_csk_accept"))
+	f, err := os.Open("collection-spec.c")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to load program: %v\n", err)
+		fmt.Println("Error loading C program")
+	}
+	defer f.Close()
+
+	spec, err := ebpf.LoadCollectionSpecFromReader(f)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to load collection spec: %v\n", err)
 		os.Exit(1)
 	}
 
-	if err := m.AttachKprobe("inet_csk_accept", fn); err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to attach program: %v\n", err)
+	coll, err := ebpf.NewCollectionWithOptions(spec, ebpf.CollectionOptions{})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to create collection: %v\n", err)
 		os.Exit(1)
 	}
 
-	channel := make(chan []byte)
-
-	m.PerfMap("events", channel)
-
-	fmt.Println("Listening for SYN packets...")
-
-	for {
-		data := <-channel
-		fmt.Print(string(data))
-	}
+	fmt.Println("%v", coll)
+	//prog := coll.Programs["on_accept"]
+	//if prog == nil {
+	//	fmt.Fprintln(os.Stderr, "Failed to find program")
+	//	os.Exit(1)
+	//}
+	//
+	//kprobe, err := ebpf.NewKprobe("inet_csk_accept", asm.Asm(prog.FD()))
+	//if err != nil {
+	//	fmt.Fprintf(os.Stderr, "Failed to create kprobe: %v\n", err)
+	//	os.Exit(1)
+	//}
+	//
+	//if err := kprobe.Attach(); err != nil {
+	//	fmt.Fprintf(os.Stderr, "Failed to attach kprobe: %v\n", err)
+	//	os.Exit(1)
+	//}
+	//
+	//channel := make(chan []byte)
+	//
+	//perfMap, err := ebpf.NewPerfMapWithOptions(coll, "events", ebpf.PerfBufferOptions{
+	//	OnLost: func(count uint64) {
+	//		fmt.Fprintf(os.Stderr, "Lost %d events\n", count)
+	//	},
+	//})
+	//if err != nil {
+	//	fmt.Fprintf(os.Stderr, "Failed to create perf map: %v\n", err)
+	//	os.Exit(1)
+	//}
+	//
+	//perfMap.Start(channel)
+	//defer perfMap.Stop()
+	//
+	//fmt.Println("Listening for SYN packets...")
+	//
+	//for {
+	//	data := <-channel
+	//	fmt.Print(string(data))
+	//}
 }
