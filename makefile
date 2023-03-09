@@ -5,3 +5,10 @@ generate_range_certs:
 
 setup_range:
 	generate_range_certs
+
+
+hype_build_all:
+	sudo docker build -t very-secure-orders ./hyperion/very-secure-orders
+
+hype_run_orders:
+	sudo docker run -p 9999:80 very-secure-orders
