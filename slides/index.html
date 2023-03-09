@@ -72,6 +72,7 @@
         <section>
             <small>Today's Agenda</small>
             <section>
+                <small>My main argument</small>
                 <blockquote>
                     Understanding fundamental signals from Linux gives us insight to compromise.
                 </blockquote>
@@ -104,8 +105,8 @@
                 <small>What you'll get out of this</small>
                 <h4>Intermediate / Advanced Practitioner</h4>
                 <p>
-                    Fundamental (but basic) signals produced by our hosts give us the ability to hunt novel
-                    vulnerabilities, using first principles and system level situational awareness.
+                    Understand that _basic_ signals produced by our systems give us the ability to hunt novel
+                    vulnerabilities.
                 </p>
             </section>
         </section>
@@ -130,12 +131,12 @@
             </section>
             <section>
                 <h3>Zero-day</h3>
-                <p>
+                <blockquote>
                     A vulnerability that has not been publicly disclosed.
-                </p>
+                </blockquote>
                 <ul>
-                    <li>No way to track proactively</li>
                     <li>No patch</li>
+                    <li>No way to track</li>
                 </ul>
             </section>
             <section>
@@ -192,10 +193,7 @@
             </section>
             <section>
                 <h3>Infra at hyperion</h3>
-                <img src="./assets/hyperion-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
-                <p>
-                    TOdo annotate traffic flow
-                </p>
+                <img src="./assets/basic-infra.png" style="width: 50%;" alt="Infra at hyperion"/>
                 <p>
                     We've simplified the infra a bit.
                 </p>
@@ -203,23 +201,18 @@
             <section>
                 <h3>RBAC service at hyperion</h3>
                 <p>
-                    Authorizes user actions
-                </p>
-                <p>
-                    TODO: insert diagram about an authorization
+                    <img src="./assets/rbac-service.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
             </section>
             <section>
                 <h3>Traffic patterns for RBAC service</h3>
-                <p>TODO: diagram</p>
                 <p>
-                    EW traffic to other services
+                    EW traffic to other services,
                 </p>
                 <p>
-                    Code deploys
+                    <img src="./assets/rbac-traffic.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
                 <p>
-                    Maintinace / Troubleshooting from SRE's
                 </p>
             </section>
 
@@ -227,15 +220,12 @@
                 <h3>Technical Review of RBAC service</h3>
                 <p>
                     Node API: /api/v1/authorize?user_id=1&resource_id=2&action=3
-                    // => yes
-                    // => no
                 </p>
                 <p>
-                    Redis cache
+                    Redis cache (Key Value store) (on box)
                 </p>
                 <p>
-                    Direct connection to user database
-                    (just to simplify, maybe there's a user service in reality)
+                    Direct connection to user database (off box)
                 </p>
             </section>
 
@@ -256,7 +246,7 @@
                 <p>Identify everyday traffic</p>
                 <p>Identify maintence traffic</p>
                 <p>Identify deploy traffic</p>
-                <p>Exercise 1</p>
+                <p>(Exercise 1)</p>
             </section>
         </section>
 
@@ -269,23 +259,24 @@
                 <p>Image of syn and syn-ack in TCP</p>
             </section>
             <section>
+                <p>We'll focus on TCP over UDP, ICMP, Other traffic</p>
+            </section>
+            <section>
+                <p>Successful 3-way handshake</p>
+                <img src="./assets/3-way-handshake.png" />
+            </section>
+            <section>
                 <h3>Wireshark</h3>
-                <p>TODO: Wireshark demo</p>
+                <p>
+                    <img src="./assets/wireshark.png" />
+                </p>
             </section>
             <section>
                 <h3>TCPDump</h3>
                 <code>
                     sudo tcpdump 'tcp[tcpflags] & tcp-syn != 0'
                 </code>
-                <p>
-                    TODO: TCP dump demo
-                </p>
-            </section>
-            <section>
-                <h3>TCPDump (demo)</h3>
-                <p>
-                    video demo
-                </p>
+                <img src="./assets/tcpdump.png.png" />
             </section>
             <section>
                 <h3>
@@ -294,6 +285,7 @@
                 <p>
                     Libpcap is a library for capturing and processing network packets in real-time
                 </p>
+                <img src="./assets/libpcap.png" />
             </section>
             <section>
                 <h3>
@@ -303,6 +295,8 @@
                     eBPF is a virtual machine that runs in the kernel and allows you to write programs that
                     can be attached to various kernel hooks.
                 </p>
+
+                <img src="./assets/ebpf.png" />
             </section>
             <section>
                 <h3>
