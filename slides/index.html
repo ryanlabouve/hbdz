@@ -35,7 +35,6 @@
                     <li> Founder of Startup.Security</li>
                     <li>Disaster Recovery <br><small>(storms not hard-drives)</small></li>
                 </ul>
-                </p>
             </section>
             <section>
                 <h2>
@@ -44,22 +43,25 @@
                 <ul>
                     <li>Security the tools, technologies, companies that are building the future (we want)</li>
                     <li>Helping series A,B,C startups kickstart security</li>
-                    <li>Security Research</li>
+                    <li>Security Observabilty Research</li>
                 </ul>
-                </p>
             </section>
             <section>
                 <p>My Background<br><small>Any Why this topic is interesting to me</small></p>
                 <ul>
                     <li>👇 Software engineer</li>
-                    <li>👇 DevOps+SysAdmin</li>
-                    <li>👉 Offensive Security</li>
+                    <li>👇 SRE (DevOps+SysAdmin)</li>
+                    <li>👉 Security Observability & Strategy</li>
                 </ul>
             </section>
             <section>
-                <h3>First principles up</h3>
-                <p>Not big tools down</p>
-                <p>OSS + DIY, startup life</p>
+                <h3>Modus Operindi Mei</h3>
+                <p>🧑‍🎓 First princples up</p>
+                <small>(Not big tools down)</small>
+                <p>🏕️ Bazzar > 🏰 Cathedral</p>
+                <small>(OSS > Closed source)</small>
+                <p>🎨 Shameless Iteration</p>
+                <small>(We're going to be wrong a lot, but learn each time</small>
             </section>
         </section>
         <!-- ############################################# -->
@@ -80,13 +82,13 @@
             <section style="text-transform: uppercase;">
                 <ol>
                     <li>
-                        <b>STORY MODE</b><br> <small>Running into signs of compromise</small>
+                        <b>STORY MODE</b><br> <small>running into compromise</small>
                     </li>
                     <li>
                         <b>Signals of compromise</b><br><small>philosophy and methodology</small>
                     </li>
                     <li>
-                        <b>Signals in the wild</b><br><small>Conclusions and perspective</small>
+                        <b>Signals in the wild</b><br><small>Tactics & perspective</small>
                     </li>
                 </ol>
             </section>
@@ -97,16 +99,16 @@
                 <small>What you'll get out of this</small>
                 <h4>Beginner / Intermediate Practitioner</h4>
                 <p>
-                    Better understanidng of the signals available from Linux and how they can lead to situational
-                    system awareness.
+                    Better understanding of the signals available from Linux and how they can lead to situational
+                    system awareness (which can help you hunt vulns on your system).
                 </p>
             </section>
             <section>
                 <small>What you'll get out of this</small>
                 <h4>Intermediate / Advanced Practitioner</h4>
                 <p>
-                    Understand that _basic_ signals produced by our systems give us the ability to hunt novel
-                    vulnerabilities.
+                    Review fundamental signals produced by linux systems and push to use them
+                    to understand potential and novel vulnerabilities on your hosts.
                 </p>
             </section>
         </section>
@@ -151,7 +153,7 @@
             <section>
                 <h3>Startups in hyper-growth</h3>
                 <p>
-                    Growth is prioritied over everything (e.g. security)
+                    Growth is prioritized over everything (e.g. security)
                 </p>
                 <p>
                     Microservices a popular choice for companies in hyper-growth mode
@@ -159,9 +161,9 @@
             </section>
             <section>
                 <h3>Microservices growth mode math!</h3>
-                <p>
+                <small>
                     I can...
-                </p>
+                </small>
                 <p>
                     i. "divide big problems into smaller problems
                 </p>
@@ -173,13 +175,11 @@
                 </p>
             </section>
             <section>
-
                 <img src="./assets/sad-dinos.png" alt="dinosauers crying">
             </section>
             <section>
-                <h3>Microservices 101</h3>
+                <h3>Microservices primer</h3>
                 <p>Do one small thing!</p>
-                <p></p>
                 <p>North-South vs East West traffic</p>
                 <p>
                     Common for large companies to have 100's of microservices
@@ -203,12 +203,6 @@
                 </p>
             </section>
             <section>
-                <h3>RBAC service at hyperion</h3>
-                <p>
-                    <img src="./assets/rbac-service.png" style="width: 50%;" alt="Infra at hyperion"/>
-                </p>
-            </section>
-            <section>
                 <h3>Traffic patterns for RBAC service</h3>
                 <p>
                     EW traffic to other services,
@@ -216,9 +210,14 @@
                 <p>
                     <img src="./assets/rbac-traffic.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
+            </section>
+            <section>
+                <h3>RBAC service at hyperion</h3>
                 <p>
+                    <img src="./assets/rbac-service.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
             </section>
+
 
             <section>
                 <h3>Technical Review of RBAC service</h3>
@@ -250,7 +249,7 @@
                 <p>Identify everyday traffic</p>
                 <p>Identify maintence traffic</p>
                 <p>Identify deploy traffic</p>
-                <p>(Exercise 1)</p>
+                <small>(Exercise 1)</small>
             </section>
         </section>
 
@@ -355,54 +354,12 @@
                 <h3>SUS: Tracking traffic</h3>
                 <p>No reason RBAC service should be communicating to email service</p>
             </section>
+            <section>
+                <h3>Novel vulnerabilty</h3>
+                <p>Doing data exfil</p>
+            </section>
         </section>
 
-        <section>
-            <small>
-                I/iv. STORY MODE: RED TEAM MODE ACTIVATE
-            </small>
-            <section>
-                <p>Emoji before and after red-team mode</p>
-            </section>
-            <section>
-                <p>Scan perimeter</p>
-            </section>
-            <section>
-                <p>Detailed scan on open ports</p>
-            </section>
-            <section>
-                <p>File upload form</p>
-            </section>
-            <section>
-                <p>Upload reverse shell</p>
-            </section>
-            <section>
-                Escalate via php GTFObin https://gtfobins.github.io/gtfobins/php/
-            </section>
-            <section>
-                <p>Pivot into RBAC service</p>
-            </section>
-            <section>
-                Scan network
-            </section>
-            <section>
-                Sees host (RBAC service) running redis
-            </section>
-            <section>
-                Accessible with no username and password (because, hey, we're in the internal network. why would we need a password)
-            </section>
-            <section>
-                GTFObin redis, and we have root https://gtfobins.github.io/gtfobins/redis/
-            </section>
-            <section>
-                <p>Shenanigans!</p>
-                <ul>
-                    <li>Spoof authentication</li>
-                    <li>Exfil user data</li>
-                    <li>Continue to move laterally</li>
-                </ul>
-            </section>
-        </section>
         <!-- ############################################# -->
         <!-- ############################################# -->
         <!-- 02. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY -->
@@ -420,7 +377,7 @@
                 <blockquote>Small signal can reveal quite a bit about a system</blockquote>
             </section>
             <section>
-                Zooming out, what we did is provide a signal of compromise
+                Zooming out, what we did is observe a potential signal of compromise
             </section>
             <section>
                 <h3>Classical approach for signals of compromise</h3>
@@ -440,9 +397,9 @@
                 </ul>
             </section>
             <section>
-                <p>
+                <small>
                     My take from SRE land
-                </p>
+                </small>
                 <h3>Monitoring vs Observability</h3>
                 <p>Monitoring -> I can collect all the events in a system</p>
                 <p>
@@ -450,143 +407,228 @@
                 </p>
             </section>
             <section>
-                Using basic signals to understand a system<br>
-                pros: collection size, composability, expressiveness<br>
-                cons: requires forenstics, system knowledge<br>
+                <small>tool for hunting</small>
+                <h3>"Fundamental signal"</h3>
+                <p>
+                    A granular observable event on a system. E.g. system call.
+                </p>
+                <p>
+                    Event
+                </p>
             </section>
             <section>
-                Using big signals to understand a system<br>
-                pros: context comes along for the ride, forensics included
-                cons: resource intensive, storage intensive<br>
+                <small>Using fundamental signals</small>
+                <table>
+                    <tr>
+                        <td>Pros</td>
+                        <td>
+                            collection size, composability, expressiveness<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            Cons
+                        </td>
+                        <td>
+                            requires legwork (e.g. forensics, guessing), system knowledge<br>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <section>
+            <p>II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY // (SoC::Big_Signals)</p>
+            <section>
+                <h3>SoC // Big Signals</h3>
+                <p>
+                    A more complex and specific signal that's composed of several factors
+                </p>
+                <p>
+                    "Circumstance"
+                </p>
+            </section>
+            <section>
+                <table>
+                    <tr>
+                        <td>
+                            pros
+                        </td>
+                        <td>
+                            context comes along for the ride, forensics included
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            cons
+                        </td>
+                        <td>
+                            resource intensive, storage intensive, fragile
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
                 <h3>Example using a big signal</h3>
-                <h3>Cobalt strike</h3>
+                <h3>Detecting Cobalt strike (C2)</h3>
+            </section>
+
+            <section>
+                <small>Signature based detection,Cobalt strike beacon implant </small>
+                <small>
+                    "identifies an adversary using a Cobalt Strike beacon implant to pivot and issue commands over SMB through the use of configurable named pipes..."
+                </small>
+                <pre>
+<code>
+file_modifications_include ('pipe\msagent_', \
+    'pipe\lsarpc_', 'pipe\samr_', ...)
+
+</code>
+                </pre>
+
+                <small>
+                    <a href="https://redcanary.com/threat-detection-report/threats/cobalt-strike/">
+                        https://redcanary.com/threat-detection-report/threats/cobalt-strike/
+                    </a>
+                </small>
             </section>
             <section>
-                <h3>Signature based detection</h3>
-                <h3>Cobalt strike</h3>
-                <p>
-                    Cobalt strike beacon implant
-                </p>
+                <small>Another signature based detection of Cobalt Strike</small>
                 <p>
                     Rundll32.exe to span SQL Server Client Configuration Utility
                 </p>
-                <p>
+                <small>
+                    "identifies instances of rundll32.exe spawning the SQL Server Client Configuration Utility (cliconfg.exe). We often see this pattern of process execution when Cobalt Strike leverages DLL Search Order Hijacking as a method of UAC bypass."
+                </small>
+                <pre>
+<code>
+    parent_process == rundll32.exe
+    &&
+    process == cliconfg.exe
+
+</code>
+                    </pre>
+                <small>
+                    <a href="https://redcanary.com/threat-detection-report/threats/cobalt-strike/">
+                        https://redcanary.com/threat-detection-report/threats/cobalt-strike/
+                    </a>
+                </small>
+            </section>
+            <section>
+                <small>
                     Command-line patterns for cobalt strike beacons via GetSystem
-                </p>
-                <small>
-                    https://redcanary.com/threat-detection-report/threats/cobalt-strike/
                 </small>
-            </section>
-            <section>
-                <h3>Signature based detection</h3>
-                <h3>Cobalt strike</h3>
-                <p>
-                    Cobalt strike beacon implant
-                </p>
-                <blockquote>
-                    This detection analytic identifies an adversary using a Cobalt Strike beacon implant to pivot and issue commands over SMB through the use of configurable named pipes. Cobalt Strike beacons have configurable options to allow SMB communication over named pipes, utilizing a host of default names commonly used by adversaries. Analysis should focus on any file modifications to a suspicious named pipe within this process.
-                </blockquote>
-                <code>
-                    file_modifications_include ('pipe\msagent_', 'pipe\interprocess_', 'pipe\lsarpc_', 'pipe\samr_', 'pipe\netlogon_', 'pipe\wkssvc_', 'pipe\srvsvc_', 'pipe\mojo_', 'pipe\postex', 'pipe\status_', 'pipe\msse-')
-                </code>
+                <pre>
+<code>
+    process == cmd.exe
+    &&
+    command_line_includes ('/(?i)echo\s+[0-9a-f]{11}\s+\>\;?\s+\\\\\.\\pipe\\[0-9a-f]{6}/.match')
+
+</code>
+                    </pre>
                 <small>
-                    https://redcanary.com/threat-detection-report/threats/cobalt-strike/
-                </small>
-            </section>
-            <section>
-                <h3>Signature based detection</h3>
-                <h3>Cobalt strike</h3>
-                <blockquote>
-                    This analytic identifies instances of rundll32.exe spawning the SQL Server Client Configuration Utility (cliconfg.exe). We often see this pattern of process execution when Cobalt Strike leverages DLL Search Order Hijacking as a method of UAC bypass.
-                </blockquote>
-                <p>
-                    Rundll32.exe to span SQL Server Client Configuration Utility
-                </p>
-                <code>
-                    parent_process == rundll32.exe
-                    &&
-                    process == cliconfg.exe
-                </code>
-                <small>
-                    https://redcanary.com/threat-detection-report/threats/cobalt-strike/
-                </small>
-            </section>
-            <section>
-                <h3>Signature based detection</h3>
-                <h3>Cobalt strike</h3>
-                <p>
-                    Command-line patterns for cobalt strike beacons via GetSystem
-                </p>
-                <blockquote>
-                    This analytic identifies commonly observed command-line patterns when Cobalt Strike beacons escalate privileges via the GetSystem feature. Adversaries use GetSystem to impersonate a token for the SYSTEM account. This level of access allows an adversary to perform privileged actions beyond that of an administrator.
-                </blockquote>
-                <code>
-                    process == cmd.exe
-                    &&
-                    command_line_includes ('/(?i)echo\s+[0-9a-f]{11}\s+\>\;?\s+\\\\\.\\pipe\\[0-9a-f]{6}/.match')
-                </code>
-                <p>
                     The above regular expression will match on the following example what of using GetSystem may look like via a Cobalt Strike beacon:
-                </p>
-                <code>C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c</code>
+                </small>
+                <pre>
+<code>
+C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
+
+</code>
+                </pre>
                 <small>
-                    https://redcanary.com/threat-detection-report/threats/cobalt-strike/
+                    <a href="https://redcanary.com/threat-detection-report/threats/cobalt-strike/">
+                        https://redcanary.com/threat-detection-report/threats/cobalt-strike/
+                    </a>
                 </small>
             </section>
             <section>
                 This is a game of cat a mouse
             </section>
+        </section>
+        <section>
+            <p>II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY // small-signals</p>
             <section>
-                <h3>Ex; detecting C2 with basic signals</h3>
-                <p>
-                    What do C2's do?
-                </p>
-                <p>
-                    Data exfiltration
-                </p>
-                <p>
-                    Encrypt data for ransom
-                </p>
-                <p>
-                    Lateral movement
-                </p>
-                <p>
-                    Priv Esc
-                </p>
-                <p>
-                    Deploying unwanted software (e.g. malware, miners, etc)
-                </p>
-                <p>
-                    Sabotage
-                </p>
+                Instead of looking for very specific C2's, let's describe the behavior of any C2<br>
+                and describe it using small signals
             </section>
             <section>
-                <p>What other small signals do we have to help us detect C2 based activity?</p>
-                <p>
-                    File system
-                </p>
-                <p>
-                    Network
-                </p>
+                <h4>
+                    C2's, what do?
+                </h4>
+                <ul>
+                    <li>
+                        Data exfiltration
+                    </li>
+                    <li>
+                        Encrypt data for ransom
+                    </li>
+                    <li>
+                        Lateral movement
+                    </li>
+                    <li>
+                        Priv Esc
+                    </li>
+                    <li>
+                        Deploying unwanted software (e.g. malware, miners, etc)
+                    </li>
+                    <li>
+                        Sabotage
+                    </li>
+                </ul>
             </section>
             <section>
-                <p>To work with small signals successfully we need</p>
+                <h4>
+                    C2's, what do?
+                </h4>
                 <p>
-                    way to collect them => eBPF/prometheus
+                    Zooming in to data exfiltration
                 </p>
-                <p>
+                <small>
+                    (i.e. moving your files)
+                </small>
+            </section>
+            <section>
+                <p>And let's note, your files can be moved in very sneaky ways</p>
+                <img src="assets/sneaky-exfil.png" />
+            </section>
+            <section>
+                <p>What small signals do we have to help us detect C2 based activity?</p>
+                <table>
+                   <tr>
+                       <td>
+                           🗂️File system
+                       </td>
+                       <td>
+                           🕸️Network
+                       </td>
+                   </tr>
+                </table>
+            </section>
+            <section>
+                <h3>Syscalls are the key.</h3>
+                <p>This is the API any interaction happens with network and files at</p>
+            </section>
+            <section>
+                <p>To explore with small signals successfully we need:</p>
+                <ul>
+                    <li>
+                    Snoop syscalls => eBPF
+                </li>
+                <li>
+                    way to collect them => prometheus
+                </li>
+                <li>
                     way to vizualize them => grafana
-                </p>
-                <p>
+                </li>
+                <li>
                     way to query/compose them => prometheus
-                </p>
+                </li>
+                </ul>
             </section>
             <section>
                 <h3>
-                    eBPF
+                    eBPF (Snooping Syscalls)
                 </h3>
                 <p>
                     Run user code in the kernal
@@ -594,38 +636,52 @@
                 <p>
                     What many "big tools" (e.g. CrowdStrike Falcon) uses to monitor endpoints
                 </p>
+            </section>
+
+            <section>
+                TODO: explain how eBPF is used to accomplish goal (speaker notes)
+                <aside class="notes">
+                    eBPF can be used to observe syscalls
+
+                    Here are the general steps to observe these system calls using eBPF:
+
+                    Write eBPF programs: Write eBPF programs in C that define the probes you want to attach to specific system calls or kernel functions. These programs should collect the data you're interested in, such as the number of calls, duration, or arguments. You can use the BPF helper functions and data structures (like BPF maps) to store and manipulate the collected data.
+
+                    Compile the eBPF programs: Compile your eBPF programs using the clang compiler with the appropriate flags and target architecture. This will generate eBPF bytecode that can be loaded into the kernel.
+
+                    Load the eBPF programs: Write a user-space loader program in a language like C or Python (using libraries like libbpf, BCC, or BPFtrace) that loads the compiled eBPF bytecode into the kernel, attaches the probes to the desired system calls or functions, and manages the lifecycle of the eBPF programs.
+
+                    Retrieve and process data: The loader program should also handle the retrieval of data from the eBPF programs. This typically involves interacting with BPF maps or perf buffers to collect the data generated by your eBPF programs. You can then process and analyze this data as needed, such as calculating statistics, generating visualizations, or logging events.
+
+                    Cleanup: When you're done observing the system calls, the loader program should unload the eBPF programs and release any allocated resources.
+
+
+                    BCC (BPF Compiler Collection): A toolkit for creating efficient kernel tracing and manipulation programs using eBPF. BCC provides a set of tools and libraries for working with eBPF, along with various pre-built tools for common use cases. Check the official repository here: https://github.com/iovisor/bcc
+                    BPFtrace: A high-level tracing language for eBPF that simplifies the creation of eBPF programs for various tracing purposes. BPFtrace allows you to write scripts that define the probes and actions to take, making it easier to observe system calls and other events. Visit the official repository here: https://github.com/iovisor/bpftrace
+                    libbpf: A library for working with eBPF programs and BPF maps, providing a low-level API for loading, attaching, and interacting with eBPF programs. Check the official repository here: https://github.com/libbpf/libbpf
+                    By using eBPF and the available tools, you can observe the system calls involved in TCP traffic and gain a deeper understanding of the network operations happening on your system.
+                </aside>
+            </section>
+
+            <section>
+                <p>Prometheus (Collect Metrics)</p>
                 <p>
-                    This will be a recurring theme in tracking signals
+                    Counting system calls
                 </p>
+                <img src="assets/prom-console.png" />
             </section>
             <section>
-                <h3>
-                    Grafana
-                </h3>
                 <p>
-                    Chose whatever tool you want, this one is common in my world and will map to any time series backed metrics vizualizer
-                </p>
-                <p>
-                    Vizualization tool
+                    Grafana (Vizualization)
                 </p>
                 <p>
                     Can be used to visualize eBPF data
                 </p>
-                <p>
-                    Implementation detail. Use wahtever you want.
-                </p>
+                <img src="assets/grafana.png" />
             </section>
             <section>
-                <h3>Prometheus Query Language</h3>
-                <p>
-                    Chose whatever tool you want, this one is common in my world and will map to any time series based metrics collector
-                </p>
-                <p>
-                    Compose and vizualize our fidings
-                </p>
-                <p>
-                    Implementation detail. Use wahtever you want.
-                </p>
+                <p>Prometheus Query Language</p>
+                <img src="assets/prom-ql.png" />
             </section>
         </section>
         <section>
@@ -638,7 +694,14 @@
                 II/ii. SIGNALS OF COMPROMISE: FILE ACCESS
             </small>
             <section>
-                <p>Primer on files</p>
+                Let's see how we can detect ex-fill from small signals
+            </section>
+            <section>
+                Exfill is someone moving your files
+            </section>
+
+            <section>
+                <p>Primer on files: definition</p>
                 <p>
                     Files are the building blocks of linux systems
                 </p>
@@ -647,48 +710,114 @@
                 </p>
             </section>
             <section>
-                <p>Primer on files</p>
+                <p>Primer on files: details</p>
                 <p>
-                    File types: _regular files_, directories, sym links, block devices (hds, usb drives, etc, sockets, character devices (keyboards, mice) more
+                   File permissions
+                </p>
+                <p>
+                    File paths
+                </p>
+                <p>
+                    File hierarchy
                 </p>
             </section>
             <section>
                 <p>
-                   File permissions:
+                    File I/O (what we care about)
                 </p>
                 <p>
-                    File paths,
-                </p>
-                File hierarchy
-            </section>
-            <section>
-                <p>
-                    File I/O (what we care about_
+                    So if someone wants to move your files, what are they going to have to do?
                 </p>
             </section>
             <section>
-                How we interact with file
-                <p>
+                Interacting with files at a system level
+
+                <table>
+                    <tr>
+                        <td>
+                            open():
+                        </td>
+                        <td style="font-size: 12px">
+                            This system call is used to open an existing file or create a new one. It returns a file descriptor, a non-negative integer that represents an open file within the process. The open() call takes arguments specifying the file path, access mode (read, write, or both), and permissions (if creating a new file). Common access modes include O_RDONLY (read-only), O_WRONLY (write-only), and O_RDWR (read and write).
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            close()
+                        </td>
+                        <td style="font-size: 12px">
+                            This call closes an open file by releasing the associated file descriptor. It is essential to close files after usage to prevent resource leaks and ensure that data is flushed to the storage device.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            read()
+                        </td>
+                        <td style="font-size: 12px">
+                            This system call reads data from an open file into a buffer. It takes a file descriptor, a buffer pointer, and the number of bytes to read as arguments. The read() call returns the number of bytes actually read or a negative value if an error occurs. When the end of the file is reached, read() returns 0.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            write()
+                        </td>
+                        <td style="font-size: 12px">
+                            This call writes data from a buffer to an open file. It takes a file descriptor, a buffer pointer, and the number of bytes to write as arguments. The write() call returns the number of bytes actually written or a negative value if an error occurs.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            lseek()
+                        </td>
+                        <td style="font-size: 12px">
+                            This system call is used to change the file offset of an open file. It allows for random access to a file's contents by specifying the new offset position relative to a reference point (SEEK_SET for the start of the file, SEEK_CUR for the current position, or SEEK_END for the end of the file). lseek() returns the resulting offset location or a negative value if an error occurs.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            stat(), <br>fstat(),<br> and lstat()
+                        </td>
+                        <td style="font-size: 12px">
+                            These calls retrieve information about a file, such as its size, permissions, and timestamps. stat() and lstat() take a file path as an argument, while fstat() takes a file descriptor. lstat() differs from stat() in that it retrieves information about a symbolic link itself rather than the file it points to.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            rename()
+                        </td>
+                        <td style="font-size: 12px">
+                            This system call renames a file or moves it to a different directory. It takes the old file path and the new file path as arguments.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            unlink()
+                        </td>
+                        <td>
+                            This call removes a file from the file system. It takes the file path as an argument. The file's storage space is released when all processes that have the file open close it.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            fsync() and<br> fdatasync()
+                        </td>
+                        <td>
+                            These calls ensure that all buffered data associated with an open file is written to the storage device. fsync() synchronizes both file data and metadata, while fdatasync() synchronizes only file data.
+                        </td>
+                    </tr>
+                </table>
+                <aside class="speaker-notes">
                     System calls are a fundamental interface between a user-space application and the Linux kernel. They allow user programs to request services from the kernel, such as file I/O, process management, memory management, and more. When it comes to Linux files, several important system calls facilitate file manipulation and I/O operations:
-
-                    open(): This system call is used to open an existing file or create a new one. It returns a file descriptor, a non-negative integer that represents an open file within the process. The open() call takes arguments specifying the file path, access mode (read, write, or both), and permissions (if creating a new file). Common access modes include O_RDONLY (read-only), O_WRONLY (write-only), and O_RDWR (read and write).
-
-                    close(): This call closes an open file by releasing the associated file descriptor. It is essential to close files after usage to prevent resource leaks and ensure that data is flushed to the storage device.
-
-                    read(): This system call reads data from an open file into a buffer. It takes a file descriptor, a buffer pointer, and the number of bytes to read as arguments. The read() call returns the number of bytes actually read or a negative value if an error occurs. When the end of the file is reached, read() returns 0.
-
-                    write(): This call writes data from a buffer to an open file. It takes a file descriptor, a buffer pointer, and the number of bytes to write as arguments. The write() call returns the number of bytes actually written or a negative value if an error occurs.
-
-                    lseek(): This system call is used to change the file offset of an open file. It allows for random access to a file's contents by specifying the new offset position relative to a reference point (SEEK_SET for the start of the file, SEEK_CUR for the current position, or SEEK_END for the end of the file). lseek() returns the resulting offset location or a negative value if an error occurs.
-
-                    stat(), fstat(), and lstat(): These calls retrieve information about a file, such as its size, permissions, and timestamps. stat() and lstat() take a file path as an argument, while fstat() takes a file descriptor. lstat() differs from stat() in that it retrieves information about a symbolic link itself rather than the file it points to.
-
-                    rename(): This system call renames a file or moves it to a different directory. It takes the old file path and the new file path as arguments.
-
-                    unlink(): This call removes a file from the file system. It takes the file path as an argument. The file's storage space is released when all processes that have the file open close it.
-
-                    fsync() and fdatasync(): These calls ensure that all buffered data associated with an open file is written to the storage device. fsync() synchronizes both file data and metadata, while fdatasync() synchronizes only file data.
-                </p>
+                </aside>
             </section>
             <section>
                 File access patterns, File motifications, File creation and deletion,
@@ -717,116 +846,223 @@
             <small>
                 II/ii. SIGNALS OF COMPROMISE: NETWORK
             </small>
+
             <section>
-                <p>Primer on network access</p>
                 <p>
-                    Wire to desire
+                    Primer on networking in Linux
                 </p>
+                <small>
+                    (Long story very very very short)
+                </small>
             </section>
             <section>
-                Primer on networking in Linux
-                (Long story very very very short)
+
+                <table>
+
+                    <tr>
+                        <td>
+                            Application
+                        </td>
+                        <td style="font-size: 12px;">
+                            UI for creating message, formatting, or encryption then the transport layer.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Transport
+                        </td>
+                        <td style="font-size: 12px;">
+                            (If TCP) establishes a connection via "three-way handshake".
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Segmentation
+                        </td>
+                        <td style="font-size: 12px;">
+                            Once the connection is established, TCP divides the message into smaller chunks called segments.
+                            Each segment includes a header containing essential information such as the source and destination port numbers,
+                            sequence numbers, and checksums to ensure reliable and ordered transmission.
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            IP Layer
+                        </td>
+                        <td style="font-size: 12px;">
+                            The segments are then passed to the Internet Protocol (IP) layer. IP adds its own header to each segment,
+                            creating IP packets. The header includes the source and destination IP addresses, the time-to-live (TTL) value,
+                            and other information required for routing.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Data link
+                        </td>
+                        <td style="font-size: 12px;">
+                            The IP packets are handed over to the data link layer, where they are encapsulated into frames.
+                            These frames contain additional headers and trailers, such as the source and destination MAC addresses,
+                            which are needed for communication within the local network.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Physical layer
+                        </td>
+                        <td style="font-size: 12px;">
+                            Wires and NICs
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Routing
+                        </td>
+                        <td style="font-size: 12px;">
+                            Your router, which acts as the default gateway, forwards the packets to the next hop in the
+                            network based on the destination IP address. This process is repeated across multiple routers and
+                            networks until the packets reach the destination computer's network.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Reception
+                        </td>
+                        <td style="font-size: 12px;">
+                            Once the packets arrive at the destination network, they travel through the data link and
+                            physical layers, reaching the destination computer's network interface.
+                            (More happens on the host)
+                        </td>
+                    </tr>
+                </table>
             </section>
             <section>
-                BIG VIEW
+                This process uses many syscalls
+                <table>
+                    <tr>
+                        <td>
+                            socket()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Creates a new socket, returning a file descriptor that refers to it. Takes the address family (e.g., AF_INET for IPv4 or AF_INET6 for IPv6), socket type (e.g., SOCK_STREAM for TCP), and protocol as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            bind()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Assigns a local address (IP and port) to the socket. Often used by servers to listen for incoming connections on a specific port. Takes the socket file descriptor and the local address as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            connect()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Initiates a connection to a remote server for a client application. Takes the socket file descriptor and the destination address (IP and port) as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            listen()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Configures a socket to listen for incoming connection requests from clients. Typically used by servers after bind(). Takes the socket file descriptor and a backlog value (the maximum number of pending connections) as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            accept()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Accepts an incoming connection request from a client, creating a new socket specifically for that connection. Takes the listening socket file descriptor and returns a new file descriptor for the accepted connection.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            recv()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Receives data from the connected remote socket. Takes the socket file descriptor, a pointer to a buffer for the received data, the buffer size, and optional flags as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            read()
+                        </td>
+                        <td style="font-size: 12px;">
+                             A general file I/O system call that can be used to receive data from a connected remote socket. Takes the socket file descriptor, a pointer to a buffer for the received data, and the buffer size as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            select() or poll()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Monitors multiple file descriptors, including sockets, for events such as data availability for reading, readiness for writing, or exceptional conditions. Useful for managing multiple connections in a single-threaded application.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            getsockopt() and setsockopt()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Retrieves or sets socket options, respectively. These system calls allow for adjusting socket settings, such as timeouts, buffer sizes, or enabling/disabling specific features.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            shutdown()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Shuts down part or all of a full-duplex connection on a socket. Takes the socket file descriptor and a flag indicating which part of the connection to shut down (e.g., SHUT_RD for reading, SHUT_WR for writing, or SHUT_RDWR for both) as arguments.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            close()
+                        </td>
+                        <td style="font-size: 12px;">
+                            Closes the socket connection and releases the associated file descriptor. Should be called after the connection is no longer needed to free resources and ensure proper cleanup.
+                        </td>
+                    </tr>
+                </table>
 
-                Application layer: UI for creating message, formatting, or encryption then the transport layer.
-
-                Transport layer: (If TCP) establishes a connection with the destination computer by performing a
-                "three-way handshake". The handshake involves exchanging SYN (synchronize) and ACK (acknowledge) packets
-                between the two computers to establish and confirm the connection.
-
-                Segmentation: Once the connection is established, TCP divides the message into smaller chunks called segments.
-                Each segment includes a header containing essential information such as the source and destination port numbers,
-                sequence numbers, and checksums to ensure reliable and ordered transmission.
-
-                Network layer (IP): The segments are then passed to the Internet Protocol (IP) layer,
-                which is responsible for routing the data across the network. IP adds its own header to each segment,
-                creating IP packets. The header includes the source and destination IP addresses, the time-to-live (TTL) value,
-                and other information required for routing.
-
-                Data link layer: The IP packets are handed over to the data link layer, where they are encapsulated into frames.
-                These frames contain additional headers and trailers, such as the source and destination MAC addresses,
-                which are needed for communication within the local network.
-
-                Physical layer: The frames are then converted into electrical, optical, or radio signals, depending on
-                the network medium, and transmitted across the local network to your router or gateway.
-
-                Routing: Your router, which acts as the default gateway, forwards the packets to the next hop in the
-                network based on the destination IP address. This process is repeated across multiple routers and
-                networks until the packets reach the destination computer's network.
-
-                Reception: Once the packets arrive at the destination network, they travel through the data link and
-                physical layers, reaching the destination computer's network interface.
-
-                (More happens on the host)
             </section>
-
             <section>
-                <aside class="notes">
-                    socket(): Creates a new socket, returning a file descriptor that refers to it. Takes the address family (e.g., AF_INET for IPv4 or AF_INET6 for IPv6), socket type (e.g., SOCK_STREAM for TCP), and protocol as arguments.
-
-                    bind(): Assigns a local address (IP and port) to the socket. Often used by servers to listen for incoming connections on a specific port. Takes the socket file descriptor and the local address as arguments.
-
-                    connect(): Initiates a connection to a remote server for a client application. Takes the socket file descriptor and the destination address (IP and port) as arguments.
-
-                    listen(): Configures a socket to listen for incoming connection requests from clients. Typically used by servers after bind(). Takes the socket file descriptor and a backlog value (the maximum number of pending connections) as arguments.
-
-                    accept(): Accepts an incoming connection request from a client, creating a new socket specifically for that connection. Takes the listening socket file descriptor and returns a new file descriptor for the accepted connection.
-
-                    send(): Sends data to the connected remote socket. Takes the socket file descriptor, a pointer to the message buffer, the message length, and optional flags as arguments.
-
-                    recv(): Receives data from the connected remote socket. Takes the socket file descriptor, a pointer to a buffer for the received data, the buffer size, and optional flags as arguments.
-
-                    write(): A general file I/O system call that can be used to send data to a connected remote socket. Takes the socket file descriptor, a pointer to the message buffer, and the message length as arguments.
-
-                    read(): A general file I/O system call that can be used to receive data from a connected remote socket. Takes the socket file descriptor, a pointer to a buffer for the received data, and the buffer size as arguments.
-
-                    select() or poll(): Monitors multiple file descriptors, including sockets, for events such as data availability for reading, readiness for writing, or exceptional conditions. Useful for managing multiple connections in a single-threaded application.
-
-                    getsockopt() and setsockopt(): Retrieves or sets socket options, respectively. These system calls allow for adjusting socket settings, such as timeouts, buffer sizes, or enabling/disabling specific features.
-
-                    shutdown(): Shuts down part or all of a full-duplex connection on a socket. Takes the socket file descriptor and a flag indicating which part of the connection to shut down (e.g., SHUT_RD for reading, SHUT_WR for writing, or SHUT_RDWR for both) as arguments.
-
-                    close(): Closes the socket connection and releases the associated file descriptor. Should be called after the connection is no longer needed to free resources and ensure proper cleanup.
-                </aside>
+                Let's focus on the 3-way TCP handshake
+                <img src="assets/3-way-handshake.png">
             </section>
             <section>
-                <aside class="notes">
-                    eBPF can be used to observe syscalls
+                The three-way handshake in TCP is the process of establishing a connection between two endpoints by exchanging SYN (synchronize) and ACK (acknowledge) packets. The system calls involved in this process are typically:
 
-                    Here are the general steps to observe these system calls using eBPF:
+                <ul>
+                    <li>
+                        socket(): Creates a new socket for communication. This call returns a socket file descriptor that is used for subsequent operations.
+                    </li>
+                    <li>
+                        bind(): (Optional) Binds the socket to a specific local address and port. This is not always necessary, as the operating system will assign an ephemeral port automatically if connect() or listen() is called without a prior bind().
+                    </li>
+                    <li>
+                        connect() (for the client side): Initiates a connection to the remote endpoint by sending a SYN packet. The operating system chooses an ephemeral local port if bind() was not called earlier. The client then waits for the server to respond with a SYN-ACK packet.
+                    </li>
+                    <li>
+                        listen() (for the server side): Indicates that the socket is willing to accept incoming connection requests. The server socket is set to listen for incoming SYN packets from clients.
+                    </li>
+                    <li>
+                        accept() (for the server side): Blocks and waits for a connection request from a client. When the server receives a SYN packet, it responds with a SYN-ACK packet. The accept() call returns a new socket file descriptor for the established connection with the client.
+                    </li>
+                </ul>
 
-                    Write eBPF programs: Write eBPF programs in C that define the probes you want to attach to specific system calls or kernel functions. These programs should collect the data you're interested in, such as the number of calls, duration, or arguments. You can use the BPF helper functions and data structures (like BPF maps) to store and manipulate the collected data.
+                After the client receives the SYN-ACK packet from the server, it sends an ACK packet to complete the handshake. The connection is now established, and both endpoints can use the send() and recv() system calls to transmit data.
 
-                    Compile the eBPF programs: Compile your eBPF programs using the clang compiler with the appropriate flags and target architecture. This will generate eBPF bytecode that can be loaded into the kernel.
-
-                    Load the eBPF programs: Write a user-space loader program in a language like C or Python (using libraries like libbpf, BCC, or BPFtrace) that loads the compiled eBPF bytecode into the kernel, attaches the probes to the desired system calls or functions, and manages the lifecycle of the eBPF programs.
-
-                    Retrieve and process data: The loader program should also handle the retrieval of data from the eBPF programs. This typically involves interacting with BPF maps or perf buffers to collect the data generated by your eBPF programs. You can then process and analyze this data as needed, such as calculating statistics, generating visualizations, or logging events.
-
-                    Cleanup: When you're done observing the system calls, the loader program should unload the eBPF programs and release any allocated resources.
-
-
-                    BCC (BPF Compiler Collection): A toolkit for creating efficient kernel tracing and manipulation programs using eBPF. BCC provides a set of tools and libraries for working with eBPF, along with various pre-built tools for common use cases. Check the official repository here: https://github.com/iovisor/bcc
-                    BPFtrace: A high-level tracing language for eBPF that simplifies the creation of eBPF programs for various tracing purposes. BPFtrace allows you to write scripts that define the probes and actions to take, making it easier to observe system calls and other events. Visit the official repository here: https://github.com/iovisor/bpftrace
-                    libbpf: A library for working with eBPF programs and BPF maps, providing a low-level API for loading, attaching, and interacting with eBPF programs. Check the official repository here: https://github.com/libbpf/libbpf
-                    By using eBPF and the available tools, you can observe the system calls involved in TCP traffic and gain a deeper understanding of the network operations happening on your system.
-                </aside>
             </section>
             <section>
-                <p>Syn / Syn - Acks</p>
-                <aside class="notes">
-                    Host:
-                    socket(): Creates a new socket and returns a file descriptor to refer to it. This call takes the address family (e.g., AF_INET for IPv4 or AF_INET6 for IPv6), the socket type (e.g., SOCK_STREAM for TCP), and the protocol as arguments.
-                    connect(): Initiates a connection to the destination computer. This call takes the socket file descriptor and the destination address (IP and port) as arguments.
-
-                    Transport layer (TCP): When the connection is established through the connect() call, the "three-way handshake" occurs at the TCP layer. The handshake is managed by the kernel and is not directly visible to the application. However, the application may use the getsockopt() system call to check the socket's status or adjust settings.
-
-
-                    send(): Takes the socket file descriptor, a pointer to the message buffer, the message length, and optional flags as arguments. The kernel segments the data into TCP segments, adding necessary headers.
-                    write(): A more general file I/O system call that can also be used with sockets. Takes the socket file descriptor, a pointer to the message buffer, and the message length as arguments. The kernel then handles the segmentation as with send().
-                </aside>
+                We want to listen to SYN and SYN-ACK to know what server's we're connecting to and how often
+                <p>
+                    connect() (for the client side): Initiates the connection to the remote endpoint by sending a SYN packet and waits for a SYN-ACK packet in response.
+                </p>
             </section>
 
             <section>
@@ -853,23 +1089,17 @@
                 III. CONCLUSIONS IN THE WILD
             </small>
             <section>
-                <p>Some tools do this</p>
-            </section>
-            <section>
-                <p>Many people lack understanidng in how their systems work</p>
-                <p>C's talk</p>
-            </section>
-            <section>
-                <p>Perfection is many things done well</p>
-            </section>
-            <section>
-                <p>Understanidng your system is not a luxuary, it's a necessity</p>
+                <p>The bigger and more abstract our tools get, the more we lose touch with what are systems are doing</p>
             </section>
             <section>
                 <p>We are not beholden to $$$ to get insights to our system</p>
             </section>
             <section>
-                <p>We can hunt before day zero</p>
+                <p>Earlier I said relying on big signals is a cat and mouse game</p>
+                <p>Trying to break new vulns using small signals is a ghost hunt</p>
+            </section>
+            <section>
+                <p>Happy hunting</p>
             </section>
         </section>
     </div>
