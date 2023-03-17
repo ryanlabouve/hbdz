@@ -1,0 +1,60 @@
+---
+- name: Assert usage of systemd as an init system
+  ansible.builtin.assert:
+    that: ansible_service_mgr == 'systemd'
+    msg: "This role only works with systemd"
+
+- name: Install package fact dependencies
+  ansible.builtin.package:
+    name: "{{ _pkg_fact_req }}"
+    state: present
+  when: (_pkg_fact_req)
+  vars:
+    _pkg_fact_req: "{% if (ansible_pkg_mgr == 'apt') %}\
+                    {{ ('python-apt' if ansible_python_version is version('3', '<') else 'python3-apt') }}
+                    {% else %}\
+                    {% endif %}"
+- name: Gather package facts
+  ansible.builtin.package_facts:
+  when: "not 'packages' in ansible_facts"
+
+- name: Naive assertion of proper listen address
+  ansible.builtin.assert:
+    that:
+      - "':' in node_exporter_web_listen_address"
+
+- name: Assert collectors are not both disabled and enabled at the same time
+  ansible.builtin.assert:
+    that:
+      - "item not in node_exporter_enabled_collectors"
+    with_items: "{{ node_exporter_disabled_collectors }}"
+
+- name: Assert that TLS config is correct
+  when: node_exporter_tls_server_config | length > 0
+  block:
+    - name: Assert that TLS key and cert path are set
+      ansible.builtin.assert:
+        that:
+          - "node_exporter_tls_server_config.cert_file is defined"
+          - "node_exporter_tls_server_config.key_file is defined"
+    - name: Check existense of TLS cert file
+      ansible.builtin.stat:
+        path: "{{ node_exporter_tls_server_config.cert_file }}"
+      register: __node_exporter_cert_file
+
+    - name: Assert that TLS key and cert are present
+      ansible.builtin.assert:
+        that:
+          - "{{ __node_exporter_cert_file.stat.exists }}"
+          - "{{ __node_exporter_key_file.stat.exists }}"
+
+- name: Check if node_exporter is installed
+  ansible.builtin.stat:
+    path: "{{ _node_exporter_binary_install_dir}}/node_exporter"
+  register: __node_exporter_is_installed
+  check_mode: false
+  tags:
+    - node_exporter_install
+
+- name: Gather currently installed node_exporter version (if any)
+  ansible.builtin.command: "{{ _node_exporter_binary_install_dir }}/node_exporter --version"

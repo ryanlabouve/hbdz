@@ -1,0 +1,6 @@
+---
+- src: cloudalchemy.grafana
+  name: cloudalchemy.grafana
+
+- src: cloudalchemy.node_exporter
+  name: cloudalchemy.node_exporter

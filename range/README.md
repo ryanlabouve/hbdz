@@ -47,3 +47,13 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj /CN=localhost -keyout 
 
 
 prometheus.service.js inspired from https://github.com/prometheus-community/ansible/blob/main/roles/prometheus/templates/prometheus.service.j2
+
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
+
+ansible-playbook ./playbooks/setup-monitoring.yml
+ansible-playbook ./playbooks/setup-hosts.yml
+
+vagrant plugin install vagrant-hostmanager

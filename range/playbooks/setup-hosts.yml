@@ -1,0 +1,7 @@
+---
+- name: Setup hosts
+  hosts: all
+  become: yes
+
+  roles:
+    - role: cloudalchemy.node_exporter
