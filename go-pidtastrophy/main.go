@@ -59,7 +59,7 @@ func main() {
 	m := bcc.NewModule(source, []string{})
 	defer m.Close()
 
-	kprobe, err := m.LoadKprobe("trace_clone")
+	kprobe, err := m.LoadKprobe("__x64_sys_clone")
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Failed to load trace_clone: %s\n", err)
 		os.Exit(1)

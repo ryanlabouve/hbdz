@@ -32,18 +32,20 @@
                 </h2>
                 <p>
                 <ul>
-                    <li> Founder of Startup.Security</li>
-                    <li>Disaster Recovery <br><small>(storms not hard-drives)</small></li>
+                    <li>⚡️Founder of Startup.Security</li>
+                    <li>🌪️Disaster Recoverer<br><small>(storms not hard-drives)</small></li>
                 </ul>
             </section>
             <section>
                 <h2>
                     Startup.Security
                 </h2>
+                <blockquote>
+                    Secure the tools, technologies, companies that are building the future (we want)
+                </blockquote>
                 <ul>
-                    <li>Security the tools, technologies, companies that are building the future (we want)</li>
                     <li>Helping series A,B,C startups kickstart security</li>
-                    <li>Security Observabilty Research</li>
+                    <li>Security Observability & Research</li>
                 </ul>
             </section>
             <section>
@@ -61,7 +63,7 @@
                 <p>🏕️ Bazzar > 🏰 Cathedral</p>
                 <small>(OSS > Closed source)</small>
                 <p>🎨 Shameless Iteration</p>
-                <small>(We're going to be wrong a lot, but learn each time</small>
+                <small>(We're going to be wrong a lot, but learn each time)</small>
             </section>
         </section>
         <!-- ############################################# -->
@@ -162,7 +164,7 @@
             <section>
                 <h3>Microservices growth mode math!</h3>
                 <small>
-                    I can...
+                    Why? Some leadership napkin math:
                 </small>
                 <p>
                     i. "divide big problems into smaller problems
@@ -203,10 +205,7 @@
                 </p>
             </section>
             <section>
-                <h3>Traffic patterns for RBAC service</h3>
-                <p>
-                    EW traffic to other services,
-                </p>
+                <h4>Traffic patterns for RBAC service</h4>
                 <p>
                     <img src="./assets/rbac-traffic.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
@@ -220,18 +219,25 @@
 
 
             <section>
-                <h3>Technical Review of RBAC service</h3>
+                <h4>Technical Review of RBAC service</h4>
                 <p>
-                    Node API: /api/v1/authorize?user_id=1&resource_id=2&action=3
+                    rbac.hyperion.boop/api/v1/authorize?user_id=1&resource_id=2&action=3
                 </p>
-                <p>
-                    Redis cache (Key Value store) (on box)
-                </p>
-                <p>
-                    Direct connection to user database (off box)
-                </p>
-            </section>
+                <pre>
+                    <code>
+{
+    user: "1",
+    action: "3",
+    approve: true|false,
+    expires_at: "2023-05-03 11:1111"
+}
+                    </code>
+                </pre>
+                <small>
+                    (we'd probably issue a token)
+                </small>
 
+            </section>
             <section>
                 <h3>What could happen if we compromised this </h3>
                 <p>
@@ -259,36 +265,32 @@
             </small>
             <section>
                 <h3>Our First Signals: SYN / SYN-ACK's</h3>
-                <p>Image of syn and syn-ack in TCP</p>
             </section>
             <section>
                 <p>We'll focus on TCP over UDP, ICMP, Other traffic</p>
             </section>
             <section>
-                <p>Successful 3-way handshake</p>
-                <img src="./assets/3-way-handshake.png" />
+                <p><small>Successful 3-way handshake</small></p>
+                <img style="max-height: 40vh" src="./assets/3-way-handshake.png" />
             </section>
             <section>
-                <h3>Wireshark</h3>
+                <h4>Wireshark</h4>
                 <p>
-                    <img src="./assets/wireshark.png" />
+                    <img style="max-height: 40vh" src="./assets/wireshark.png" />
                 </p>
             </section>
             <section>
-                <h3>TCPDump</h3>
-                <code>
-                    sudo tcpdump 'tcp[tcpflags] & tcp-syn != 0'
-                </code>
-                <img src="./assets/tcpdump.png" />
+                <h4>TCPDump</h4>
+                <img style="max-height: 40vh" src="./assets/tcpdump.png" />
             </section>
             <section>
-                <h3>
+                <h4>
                     LibPCAP
-                </h3>
+                </h4>
                 <p>
-                    Libpcap is a library for capturing and processing network packets in real-time
+                    <small>Libpcap is a library for capturing and processing network packets in real-time</small>
                 </p>
-                <img src="./assets/libpcap.png" />
+                <img style="max-height: 35vh" src="./assets/libpcap.png" />
             </section>
             <section>
                 <h3>
@@ -326,10 +328,10 @@
                 </p>
             </section>
             <section>
-                <h3>
-                    Demo of tool
-                </h3>
-                <p>TODO: create demo of tool</p>
+                <p>
+                    Using TCP Dump
+                </p>
+                <img src="assets/tcp-dump-demo.png" />
             </section>
         </section>
 
@@ -438,7 +440,7 @@
             </section>
         </section>
         <section>
-            <p>II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY // (SoC::Big_Signals)</p>
+            <p>II. SIGNALS OF COMPROMISE: Big_Signals</p>
             <section>
                 <h3>SoC // Big Signals</h3>
                 <p>
@@ -547,7 +549,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             </section>
         </section>
         <section>
-            <p>II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY // small-signals</p>
+            <p>II. SIGNALS OF COMPROMISE: small-signals</p>
             <section>
                 Instead of looking for very specific C2's, let's describe the behavior of any C2<br>
                 and describe it using small signals
@@ -628,62 +630,87 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             </section>
             <section>
                 <h3>
-                    eBPF (Snooping Syscalls)
+                    eBPF (for Snooping Syscalls)
                 </h3>
                 <p>
                     Run user code in the kernal
                 </p>
                 <p>
-                    What many "big tools" (e.g. CrowdStrike Falcon) uses to monitor endpoints
+                    Many popular tools use eBPF to observe systems (e.g. Crowdstrike Falcon)
                 </p>
             </section>
 
             <section>
-                TODO: explain how eBPF is used to accomplish goal (speaker notes)
-                <aside class="notes">
-                    eBPF can be used to observe syscalls
-
-                    Here are the general steps to observe these system calls using eBPF:
-
-                    Write eBPF programs: Write eBPF programs in C that define the probes you want to attach to specific system calls or kernel functions. These programs should collect the data you're interested in, such as the number of calls, duration, or arguments. You can use the BPF helper functions and data structures (like BPF maps) to store and manipulate the collected data.
-
-                    Compile the eBPF programs: Compile your eBPF programs using the clang compiler with the appropriate flags and target architecture. This will generate eBPF bytecode that can be loaded into the kernel.
-
-                    Load the eBPF programs: Write a user-space loader program in a language like C or Python (using libraries like libbpf, BCC, or BPFtrace) that loads the compiled eBPF bytecode into the kernel, attaches the probes to the desired system calls or functions, and manages the lifecycle of the eBPF programs.
-
-                    Retrieve and process data: The loader program should also handle the retrieval of data from the eBPF programs. This typically involves interacting with BPF maps or perf buffers to collect the data generated by your eBPF programs. You can then process and analyze this data as needed, such as calculating statistics, generating visualizations, or logging events.
-
-                    Cleanup: When you're done observing the system calls, the loader program should unload the eBPF programs and release any allocated resources.
-
-
-                    BCC (BPF Compiler Collection): A toolkit for creating efficient kernel tracing and manipulation programs using eBPF. BCC provides a set of tools and libraries for working with eBPF, along with various pre-built tools for common use cases. Check the official repository here: https://github.com/iovisor/bcc
-                    BPFtrace: A high-level tracing language for eBPF that simplifies the creation of eBPF programs for various tracing purposes. BPFtrace allows you to write scripts that define the probes and actions to take, making it easier to observe system calls and other events. Visit the official repository here: https://github.com/iovisor/bpftrace
-                    libbpf: A library for working with eBPF programs and BPF maps, providing a low-level API for loading, attaching, and interacting with eBPF programs. Check the official repository here: https://github.com/libbpf/libbpf
-                    By using eBPF and the available tools, you can observe the system calls involved in TCP traffic and gain a deeper understanding of the network operations happening on your system.
-                </aside>
+                <p>
+                    How we use eBPF?
+                </p>
+                <table>
+                    <tr>
+                        <td style="font-size: 30px;">
+                            1. Write eBPF program
+                        </td>
+                        <td style="font-size: 14px;">
+                            Restricted C, defines probes (i.e. which calls you want to watch), these programs can collect / expose data you're interested in (via helpers like BPF maps
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 30px;">
+                            2. Compile the program
+                        </td>
+                        <td style="font-size: 14px;">
+                            using the clang compiler with the appropriate flags and target architecture, generates eBPF byte code, performs some saftey checks
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 30px;">
+                            3. Load programs
+                        </td>
+                        <td style="font-size: 14px;">
+                            Using language like C, Python, Go, etc... attach code to kernel. Manage lifecycle of program
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 30px;">
+                            4. Process data
+                        </td>
+                        <td style="font-size: 14px;">
+                             This typically involves interacting with BPF maps or perf buffers to collect the data generated by your eBPF programs.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 30px;">
+                            5. Cleanup
+                        </td>
+                        <td style="font-size: 14px;">
+                            When you're done observing the system calls, the loader program should unload the eBPF programs and release any allocated resources.
+                        </td>
+                    </tr>
+                </table>
             </section>
 
             <section>
-                <p>Prometheus (Collect Metrics)</p>
-                <p>
-                    Counting system calls
-                </p>
-                <img src="assets/prom-console.png" />
+                <small>How we collect data on system calls? Prometheus</small>
+                <img style="max-height: 40vh" src="assets/prom-console-go-pidtastrophy.png" />
             </section>
             <section>
-                <p>
-                    Grafana (Vizualization)
-                </p>
-                <p>
-                    Can be used to visualize eBPF data
-                </p>
-                <img src="assets/grafana.png" />
+                <small>
+                    Grafana:  Can be used to visualize eBPF data
+                </small>
+                <img  style="max-height: 40vh" src="assets/grafana-go-pidtastrophy.png" />
+            </section>
+            <section>
+                <small>Prometheus Query Language</small>
+                <img  style="max-height: 40vh" src="assets/prom-console-query-go-pidtastrophy.png" />
             </section>
             <section>
                 <p>Prometheus Query Language</p>
-                <img src="assets/prom-ql.png" />
+                <pre>
+                <code>
+rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
+                </code>
+                    </pre>
             </section>
-        </section>
+    </section>
         <section>
             <h2>
                 II/ii. SIGNALS OF COMPROMISE: FILE ACCESS
@@ -824,18 +851,6 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 Proccess level access, Sensitive data access, File locks?
             </section>
 
-            <section>
-                <p>Example: File Opens</p>
-            </section>
-            <section>
-                <p>Collect: File Opens</p>
-            </section>
-            <section>
-                <p>Vizualize: File Opens</p>
-            </section>
-            <section>
-                <p>Compose: File Opens</p>
-            </section>
         </section>
         <section>
             <h2>
@@ -1064,17 +1079,172 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                     connect() (for the client side): Initiates the connection to the remote endpoint by sending a SYN packet and waits for a SYN-ACK packet in response.
                 </p>
             </section>
+        </section>
+
+        <section>
+            <h2>
+                II/iii. SIGNALS OF COMPROMISE: Ex // Pidtastrophy
+            </h2>
+        </section>
+        <section>
+            <small>
+                II/iii. SIGNALS OF COMPROMISE: Ex // Pidtastrophy
+            </small>
+            <section>
+                <p>Goal</p>
+                <ul>
+                    <li>
+                        Collect stats on new PIDs created
+                    </li>
+                    <li>
+                        Vizualize and query data
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <p>Collect: File Opens</p>
+                <code>
+                    <pre>
+#include <uapi/linux/ptrace.h>
+#include <linux/sched.h>
+
+struct data_t {
+    u32 pid;
+};
+
+BPF_PERF_OUTPUT(events);
+
+int trace_clone(struct pt_regs *ctx) {
+	struct data_t data = {};
+
+	struct task_struct *task;
+	task = (struct task_struct *)bpf_get_current_task();
+
+	data.pid = task->pid;
+
+	events.perf_submit(ctx, &data, sizeof(data));
+
+	return 0;
+}
+                    </pre>
+                </code>
+            </section>
+            <section>
+                <small>Setup Probes</small>
+                <code>
+                    <pre>
+m := bcc.NewModule(source, []string{})
+defer m.Close()
+
+kprobe, err := m.LoadKprobe("__x64_sys_clone")
+if err != nil {
+    fmt.Fprintf(os.Stderr, "Failed to load trace_clone: %s\n", err)
+    os.Exit(1)
+}
+
+err = m.AttachKprobe("__x64_sys_clone", kprobe, -1)
+if err != nil {
+    fmt.Fprintf(os.Stderr, "Failed to attach clone: %s\n", err)
+    os.Exit(1)
+}
+                    </pre>
+                </code>
+            </section>
+            <section>
+                <small>Setup Counter</small>
+                <code>
+                    <pre>
+var (
+	pidCounter = prometheus.NewCounter(
+		prometheus.CounterOpts{
+			Name: "new_pid_count",
+			Help: "Counts the new pids created by system",
+		},
+	)
+)
+                    </pre>
+                </code>
+            </section>
+            <section>
+                <small>Track data</small>
+                <code>
+                    <pre>
+data.Pid = bcc.GetHostByteOrder().Uint32(payload)
+fmt.Printf("New process created: PID %d\n", data.Pid)
+pidCounter.Inc()
+
+                    </pre>
+                </code>
+            </section>
+            <section>
+                <small>
+                    Run server!
+                </small>
+                <img src="assets/server-running.png" />
+            </section>
 
             <section>
-                <p>Collect: SYN SYN-ACK</p>
+                <p>
+                    <small>
+                        See results in prometheus
+                    </small>
+                    <img src="assets/prom-console-go-pidtastrophy.png">
+                </p>
             </section>
             <section>
-                <p>Vizualize: </p>
+                <p>
+                    <small>
+                        Query them in prom
+                    </small>
+
+                    <img src="assets/prom-console-query-go-pidtastrophy.png">
+                </p>
             </section>
             <section>
-                <p>Compose: File Opens</p>
+                <p>
+                    <small>
+                        Test that we're tracking stuff
+                    </small>
+                </p>
+                <code>
+                    <pre>
+                        for i in {1..1000}; do sleep 5 & done
+                    </pre>
+                </code>
+
+            </section>
+            <section>
+                <p>
+                    <small>
+                        Query again prom (to see spike)
+                    </small>
+
+                    <img src="assets/prom-spike.png">
+                </p>
+            </section>
+            <section>
+                <p>
+                    <small>
+                        Graph them in grafana
+                    </small>
+                    <img src="assets/grafana-go-pidtastrophy.png" >
+                </p>
+            </section>
+            <section>
+                <p>
+                    <small>
+                        (opt) Setup alerts
+                    </small>
+                </p>
+            </section>
+            <section>
+               <p>
+                   I've setup all of the code to run 🤞with Vagrant, Ansible, Prom, Grafana with command if you want to play around
+                   <a href="github.com/ryanlabouve/hbdz">github.com/ryanlabouve/hbdz</a>
+               </p>
             </section>
         </section>
+
         <!-- ############################################# -->
         <!-- ############################################# -->
         <!-- 03. CONCLUSIONS IN THE WILD -->
@@ -1089,14 +1259,17 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 III. CONCLUSIONS IN THE WILD
             </small>
             <section>
-                <p>The bigger and more abstract our tools get, the more we lose touch with what are systems are doing</p>
+                <p>The bigger and more abstract our tools get, the more we lose touch with our systems</p>
             </section>
             <section>
-                <p>We are not beholden to $$$ to get insights to our system</p>
+                <p>We are not beholden to BigTools to get insights (but they can help)</p>
             </section>
             <section>
                 <p>Earlier I said relying on big signals is a cat and mouse game</p>
                 <p>Trying to break new vulns using small signals is a ghost hunt</p>
+            </section>
+            <section>
+
             </section>
             <section>
                 <p>Happy hunting</p>
