@@ -3,9 +3,26 @@ package main
 import (
 	"fmt"
 	"github.com/iovisor/gobpf/bcc"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"log"
+	"net/http"
 	"os"
 	"os/signal"
 )
+
+var (
+	pidCounter = prometheus.NewCounter(
+		prometheus.CounterOpts{
+			Name: "new_pid_count",
+			Help: "Counts the new pids created by system",
+		},
+	)
+)
+
+func init() {
+	prometheus.MustRegister(pidCounter)
+}
 
 const source string = `
 #include <uapi/linux/ptrace.h>
@@ -32,6 +49,13 @@ int trace_clone(struct pt_regs *ctx) {
 `
 
 func main() {
+	http.Handle("/metrics", promhttp.Handler())
+	go func() {
+		if err := http.ListenAndServe(":2112", nil); err != nil {
+			log.Fatalf("Failed to start metrics server: %v", err)
+		}
+	}()
+
 	m := bcc.NewModule(source, []string{})
 	defer m.Close()
 
@@ -74,6 +98,7 @@ func main() {
 			case payload := <-channel:
 				data.Pid = bcc.GetHostByteOrder().Uint32(payload)
 				fmt.Printf("New process created: PID %d\n", data.Pid)
+				pidCounter.Inc()
 
 			}
 		}
