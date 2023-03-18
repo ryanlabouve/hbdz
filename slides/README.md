@@ -43,3 +43,12 @@ Assets
 * rbac service: https://docs.google.com/drawings/d/1536J5Uu0sfoD-41L7tKzo18JFkJhC4S-QwZG6_tbpqc/edit
 * ns-ew traffic: https://docs.google.com/drawings/d/135Y8KoMkB7-pZeUvRa3qb-2yK4s4OJe7jX7dvFqoDqU/edit
 * tcp-handshake: https://docs.google.com/drawings/d/1taY1mCGLBPa43jkCx3uthckAOMHJNfB1x0wUSzO9E90/edit
+
+References/resources:
+* https://networkop.co.uk/post/2021-03-ebpf-intro/
+* https://docs.cilium.io/en/latest/bpf/
+* https://www.tkng.io/cni/cilium/#a-day-in-the-life-of-a-packet
+* http://arthurchiao.art/blog/cilium-life-of-a-packet-pod-to-service/
+* https://www.brendangregg.com/blog/2019-01-01/learn-ebpf-tracing.html
+* https://github.com/iovisor/bcc/blob/master/docs/tutorial.md
+* https://www.youtube.com/watch?v=uBqRv8bDroc
