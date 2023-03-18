@@ -65,6 +65,18 @@
                 <p>🎨 Shameless Iteration</p>
                 <small>(We're going to be wrong a lot, but learn each time)</small>
             </section>
+
+            <section>
+                <p>
+                    🛝Slides, 🧐Code, 🐕A range to play with eBPF (built with Ansible + Vagrant, running
+                    on virtualbox with a metrics server running prometheus and grafana as used in all the examples)
+                    <br>
+                    <a href="github.com/ryanlabouve/hbdz">github.com/ryanlabouve/hbdz</a>
+                </p>
+            </section>
+            <section>
+                <p>(There will be spelling errors)</p>
+            </section>
         </section>
         <!-- ############################################# -->
         <!-- 00. SET THE STAGE -->
@@ -109,8 +121,8 @@
                 <small>What you'll get out of this</small>
                 <h4>Intermediate / Advanced Practitioner</h4>
                 <p>
-                    Review fundamental signals produced by linux systems and push to use them
-                    to understand potential and novel vulnerabilities on your hosts.
+                    Convince you that having the ability to ask your system specific questions,
+                    without relying on big tools is a superpower (and cool tools to do so).
                 </p>
             </section>
         </section>
@@ -293,29 +305,17 @@
                 <img style="max-height: 35vh" src="./assets/libpcap.png" />
             </section>
             <section>
-                <h3>
+                <h4>
                     eBPF
                 </h3>
-                <p>
+                <blockquote>
                     eBPF is a virtual machine that runs in the kernel and allows you to write programs that
                     can be attached to various kernel hooks.
-                </p>
+                </blockquote>
 
-                <img src="./assets/ebpf.png" />
+                <img style="max-height: 20vh" src="./assets/ebpf.png" />
             </section>
-            <section>
-                <h3>
-                    LibPCAP vs eBPF
-                </h3>
-                <aside class="notes">
-                    eBPF and libpcap are both libraries used for capturing and processing network packets
 
-                    eBPF is a more advanced / flexible. Wider range of tasks. User code in kernel.
-
-                    libpcap is a simpler library that provides a platform-independent API for capturing and processing
-                    network packets.
-                </aside>
-            </section>
             <section>
                 <h3>
                     Our solution: <br> agent to track SYN / SYN-ACK
@@ -327,12 +327,7 @@
                     transforms output to firewall
                 </p>
             </section>
-            <section>
-                <p>
-                    Using TCP Dump
-                </p>
-                <img src="assets/tcp-dump-demo.png" />
-            </section>
+
         </section>
 
         <section>
@@ -403,41 +398,16 @@
                     My take from SRE land
                 </small>
                 <h3>Monitoring vs Observability</h3>
-                <p>Monitoring -> I can collect all the events in a system</p>
+                <p>Monitoring -> I can collect all the exhaust from a system</p>
                 <p>
-                    Observability -> I can understand the system based on certain outputs
+                    Observability -> I can understand the system based on certain event
                 </p>
             </section>
             <section>
-                <small>tool for hunting</small>
-                <h3>"Fundamental signal"</h3>
-                <p>
-                    A granular observable event on a system. E.g. system call.
-                </p>
-                <p>
-                    Event
-                </p>
+                Big signals vs Small signals?</br>
+                Complex vs Fundamental?<br>
             </section>
-            <section>
-                <small>Using fundamental signals</small>
-                <table>
-                    <tr>
-                        <td>Pros</td>
-                        <td>
-                            collection size, composability, expressiveness<br>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
 
-                            Cons
-                        </td>
-                        <td>
-                            requires legwork (e.g. forensics, guessing), system knowledge<br>
-                        </td>
-                    </tr>
-                </table>
-            </section>
         </section>
         <section>
             <p>II. SIGNALS OF COMPROMISE: Big_Signals</p>
@@ -449,26 +419,6 @@
                 <p>
                     "Circumstance"
                 </p>
-            </section>
-            <section>
-                <table>
-                    <tr>
-                        <td>
-                            pros
-                        </td>
-                        <td>
-                            context comes along for the ride, forensics included
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            cons
-                        </td>
-                        <td>
-                            resource intensive, storage intensive, fragile
-                        </td>
-                    </tr>
-                </table>
             </section>
 
             <section>
@@ -555,6 +505,16 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 and describe it using small signals
             </section>
             <section>
+                <small>tool for hunting</small>
+                <h3>"Fundamental signal"</h3>
+                <p>
+                    A granular observable event on a system. E.g. system call.
+                </p>
+                <p>
+                    Event
+                </p>
+            </section>
+            <section>
                 <h4>
                     C2's, what do?
                 </h4>
@@ -593,6 +553,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             <section>
                 <p>And let's note, your files can be moved in very sneaky ways</p>
                 <img src="assets/sneaky-exfil.png" />
+                <p><small>(but if your files are to be moved, they have to be accessed)</small></p>
             </section>
             <section>
                 <p>What small signals do we have to help us detect C2 based activity?</p>
@@ -728,32 +689,19 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             </section>
 
             <section>
-                <p>Primer on files: definition</p>
+                <h4>Everything's a file on linux tho</h4>
                 <p>
                     Files are the building blocks of linux systems
                 </p>
                 <p>
-                    "Linux treats everything as a file (including files, directories, devices, processes)"
+                    (including files, directories, devices, processes)
                 </p>
             </section>
+
             <section>
-                <p>Primer on files: details</p>
-                <p>
-                   File permissions
-                </p>
-                <p>
-                    File paths
-                </p>
-                <p>
-                    File hierarchy
-                </p>
-            </section>
-            <section>
-                <p>
-                    File I/O (what we care about)
-                </p>
                 <p>
                     So if someone wants to move your files, what are they going to have to do?
+                    How do we know if someone's reading our files?
                 </p>
             </section>
             <section>
@@ -761,7 +709,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
 
                 <table>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             open():
                         </td>
                         <td style="font-size: 12px">
@@ -770,7 +718,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             close()
                         </td>
                         <td style="font-size: 12px">
@@ -779,7 +727,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             read()
                         </td>
                         <td style="font-size: 12px">
@@ -788,7 +736,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             write()
                         </td>
                         <td style="font-size: 12px">
@@ -797,7 +745,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             lseek()
                         </td>
                         <td style="font-size: 12px">
@@ -806,7 +754,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             stat(), <br>fstat(),<br> and lstat()
                         </td>
                         <td style="font-size: 12px">
@@ -815,7 +763,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             rename()
                         </td>
                         <td style="font-size: 12px">
@@ -825,19 +773,19 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
 
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             unlink()
                         </td>
-                        <td>
+                        <td style="font-size: 12px">
                             This call removes a file from the file system. It takes the file path as an argument. The file's storage space is released when all processes that have the file open close it.
                         </td>
                     </tr>
 
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             fsync() and<br> fdatasync()
                         </td>
-                        <td>
+                        <td style="font-size: 12px">
                             These calls ensure that all buffered data associated with an open file is written to the storage device. fsync() synchronizes both file data and metadata, while fdatasync() synchronizes only file data.
                         </td>
                     </tr>
@@ -847,8 +795,80 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 </aside>
             </section>
             <section>
-                File access patterns, File motifications, File creation and deletion,
-                Proccess level access, Sensitive data access, File locks?
+                <p>
+                    Let's focus on what it looks like when someone is reading the data in our files with a tool like <code>cat</code>
+                </p>
+                <table>
+                    <tr>
+                        <td style="font-size: 25px">
+                            open()
+                        </td>
+                        <td style="font-size: 12px">
+                            The cat command starts by opening the file for reading. The open() system call takes the file path as an argument and returns a file descriptor, which is a non-negative integer representing the opened file.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 25px">
+                            fstat() (optional)
+                        </td>
+                        <td style="font-size: 12px">
+                            This system call retrieves information about the opened file, such as its size, type, and permissions. Although not strictly required for reading the file, it might be used by the cat command for internal purposes.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 25px">
+                            read()
+                        </td>
+                        <td style="font-size: 12px">
+                            Once the file is open, the cat command reads the file's contents using the read() system call. This call takes the file descriptor, a buffer to store the read data, and the number of bytes to read as arguments. The read() system call is typically executed in a loop until the entire file has been read.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 25px">
+                            write()
+                        </td>
+                        <td style="font-size: 12px">
+                             After reading a chunk of data from the file, the cat command writes the data to the standard output (usually the terminal) using the write() system call. This call takes the file descriptor for the standard output (which is usually 1), the buffer containing the data, and the number of bytes to write as arguments. The write() system call is also executed in a loop, usually in conjunction with the read() loop, to display the entire file's contents.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 25px">
+                            close()
+                        </td>
+                        <td style="font-size: 12px">
+                             Once the file's contents have been read and displayed, the cat command closes the file using the close() system call, which takes the file descriptor as an argument. This call releases the resources associated with the file descriptor.
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <p>Setting up a probe on `read()`'s, and tracking reads by PID might be a good answer</p>
+            </section>
+            <section>
+                <p>
+                    We can go through a similar exercise to figure things like:
+                </p>
+
+                <ul>
+                   <li>
+                       File access patterns
+                   </li>
+                    <li>
+                       File modifications
+                    </li>
+                    <li>
+                        File creation and deletion
+                    </li>
+                    <li>
+                       Proccess level access
+                    </li>
+                    <li>
+                       Sensitive data access
+                    </li>
+                    <li>
+                         File locks
+                    </li>
+                </ul>
             </section>
 
         </section>
@@ -864,7 +884,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
 
             <section>
                 <p>
-                    Primer on networking in Linux
+                    Breaking networking into small signals
                 </p>
                 <small>
                     (Long story very very very short)
@@ -875,24 +895,24 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 <table>
 
                     <tr>
-                        <td>
-                            Application
+                        <td style="font-size: 25px">
+                            👇 Application
                         </td>
                         <td style="font-size: 12px;">
                             UI for creating message, formatting, or encryption then the transport layer.
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Transport
+                        <td style="font-size: 25px">
+                            👇Transport
                         </td>
                         <td style="font-size: 12px;">
                             (If TCP) establishes a connection via "three-way handshake".
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Segmentation
+                        <td style="font-size: 25px">
+                            (Segmentation)
                         </td>
                         <td style="font-size: 12px;">
                             Once the connection is established, TCP divides the message into smaller chunks called segments.
@@ -902,8 +922,8 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            IP Layer
+                        <td style="font-size: 25px">
+                            👇 IP Layer
                         </td>
                         <td style="font-size: 12px;">
                             The segments are then passed to the Internet Protocol (IP) layer. IP adds its own header to each segment,
@@ -912,8 +932,8 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Data link
+                        <td style="font-size: 25px">
+                            🤝Data link
                         </td>
                         <td style="font-size: 12px;">
                             The IP packets are handed over to the data link layer, where they are encapsulated into frames.
@@ -922,16 +942,16 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Physical layer
+                        <td style="font-size: 25px">
+                            🚀Physical layer
                         </td>
                         <td style="font-size: 12px;">
                             Wires and NICs
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Routing
+                        <td style="font-size: 25px">
+                            🌎Routing
                         </td>
                         <td style="font-size: 12px;">
                             Your router, which acts as the default gateway, forwards the packets to the next hop in the
@@ -940,8 +960,8 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Reception
+                        <td style="font-size: 25px">
+                            🎓Reception
                         </td>
                         <td style="font-size: 12px;">
                             Once the packets arrive at the destination network, they travel through the data link and
@@ -952,10 +972,12 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 </table>
             </section>
             <section>
-                This process uses many syscalls
+                <p>
+                    This process uses many syscalls
+                </p>
                 <table>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             socket()
                         </td>
                         <td style="font-size: 12px;">
@@ -963,7 +985,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             bind()
                         </td>
                         <td style="font-size: 12px;">
@@ -971,7 +993,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             connect()
                         </td>
                         <td style="font-size: 12px;">
@@ -979,7 +1001,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             listen()
                         </td>
                         <td style="font-size: 12px;">
@@ -987,7 +1009,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             accept()
                         </td>
                         <td style="font-size: 12px;">
@@ -995,7 +1017,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             recv()
                         </td>
                         <td style="font-size: 12px;">
@@ -1003,7 +1025,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             read()
                         </td>
                         <td style="font-size: 12px;">
@@ -1011,7 +1033,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             select() or poll()
                         </td>
                         <td style="font-size: 12px;">
@@ -1019,7 +1041,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             getsockopt() and setsockopt()
                         </td>
                         <td style="font-size: 12px;">
@@ -1027,7 +1049,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             shutdown()
                         </td>
                         <td style="font-size: 12px;">
@@ -1035,7 +1057,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="font-size: 25px">
                             close()
                         </td>
                         <td style="font-size: 12px;">
@@ -1046,38 +1068,76 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
 
             </section>
             <section>
-                Let's focus on the 3-way TCP handshake
-                <img src="assets/3-way-handshake.png">
+                <p>
+                    Let's focus on the 3-way TCP handshake
+                </p>
+                <img style="max-height: 35vh" src="assets/3-way-handshake.png">
             </section>
             <section>
-                The three-way handshake in TCP is the process of establishing a connection between two endpoints by exchanging SYN (synchronize) and ACK (acknowledge) packets. The system calls involved in this process are typically:
+                <p>
+                    <small>
 
-                <ul>
-                    <li>
-                        socket(): Creates a new socket for communication. This call returns a socket file descriptor that is used for subsequent operations.
-                    </li>
-                    <li>
-                        bind(): (Optional) Binds the socket to a specific local address and port. This is not always necessary, as the operating system will assign an ephemeral port automatically if connect() or listen() is called without a prior bind().
-                    </li>
-                    <li>
-                        connect() (for the client side): Initiates a connection to the remote endpoint by sending a SYN packet. The operating system chooses an ephemeral local port if bind() was not called earlier. The client then waits for the server to respond with a SYN-ACK packet.
-                    </li>
-                    <li>
-                        listen() (for the server side): Indicates that the socket is willing to accept incoming connection requests. The server socket is set to listen for incoming SYN packets from clients.
-                    </li>
-                    <li>
-                        accept() (for the server side): Blocks and waits for a connection request from a client. When the server receives a SYN packet, it responds with a SYN-ACK packet. The accept() call returns a new socket file descriptor for the established connection with the client.
-                    </li>
-                </ul>
+                        The three-way handshake in TCP is the process of establishing a connection between two endpoints by exchanging SYN (synchronize) and ACK (acknowledge) packets. The system calls involved in this process are typically:
+                    </small>
+                </p>
 
-                After the client receives the SYN-ACK packet from the server, it sends an ACK packet to complete the handshake. The connection is now established, and both endpoints can use the send() and recv() system calls to transmit data.
+                <table>
+
+                    <tr>
+                        <td><b>socket():</b></td>
+                        <td style="font-size: 12px;">
+                            Creates a new socket for communication. This call returns a socket file descriptor that is used for subsequent operations.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <b>bind():</b>
+                        </td>
+                        <td style="font-size: 12px;">
+                            (Optional) Binds the socket to a specific local address and port. This is not always necessary, as the operating system will assign an ephemeral port automatically if connect() or listen() is called without a prior bind().
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                         <b>connect()</b>
+                        </td>
+                        <td style="font-size: 12px;">
+                            (for the client side): Initiates a connection to the remote endpoint by sending a SYN packet. The operating system chooses an ephemeral local port if bind() was not called earlier. The client then waits for the server to respond with a SYN-ACK packet.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                             <b>listen()</b>
+                        </td>
+                        <td style="font-size: 12px;">
+                            (for the server side): Indicates that the socket is willing to accept incoming connection requests. The server socket is set to listen for incoming SYN packets from clients.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                             <b>accept()</b>
+                        </td>
+                        <td style="font-size: 12px;">
+                            (for the server side): Blocks and waits for a connection request from a client. When the server receives a SYN packet, it responds with a SYN-ACK packet. The accept() call returns a new socket file descriptor for the established connection with the client.
+                        </td>
+                    </tr>
+                </table>
+
+                <p>
+                    <small>
+                        After the client receives the SYN-ACK packet from the server, sends ACK packet to complete handshake. The connection is established, both endpoints can use <code>send()</code> and <code>recv()</code> system calls to transmit data.
+                    </small>
+                </p>
 
             </section>
             <section>
                 We want to listen to SYN and SYN-ACK to know what server's we're connecting to and how often
                 <p>
-                    connect() (for the client side): Initiates the connection to the remote endpoint by sending a SYN packet and waits for a SYN-ACK packet in response.
+                    <b>connect()</b> (for the client side): Initiates the connection to the remote endpoint by sending a SYN packet and waits for a SYN-ACK packet in response.
                 </p>
+            </section>
+            <section>
+                Let's see this in action
             </section>
         </section>
 
@@ -1102,18 +1162,9 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 </ul>
             </section>
             <section>
-                <p>Collect: File Opens</p>
+                <p>Collect: eBPF code that will communicate with our program (compile to eBPF bytecode)</p>
+                <pre>
                 <code>
-                    <pre>
-#include <uapi/linux/ptrace.h>
-#include <linux/sched.h>
-
-struct data_t {
-    u32 pid;
-};
-
-BPF_PERF_OUTPUT(events);
-
 int trace_clone(struct pt_regs *ctx) {
 	struct data_t data = {};
 
@@ -1126,61 +1177,51 @@ int trace_clone(struct pt_regs *ctx) {
 
 	return 0;
 }
-                    </pre>
                 </code>
+                    </pre>
             </section>
             <section>
-                <small>Setup Probes</small>
+                <small>Setup Probes (I'm using BPF Compiler Collection, BCC via <a href="github.com/iovisor/gobpf">iovisor/gobpf</a>)</small>
+                <pre>
                 <code>
-                    <pre>
 m := bcc.NewModule(source, []string{})
-defer m.Close()
-
 kprobe, err := m.LoadKprobe("__x64_sys_clone")
-if err != nil {
-    fmt.Fprintf(os.Stderr, "Failed to load trace_clone: %s\n", err)
-    os.Exit(1)
-}
-
-err = m.AttachKprobe("__x64_sys_clone", kprobe, -1)
-if err != nil {
-    fmt.Fprintf(os.Stderr, "Failed to attach clone: %s\n", err)
-    os.Exit(1)
-}
-                    </pre>
+m.AttachKprobe("__x64_sys_clone", kprobe, -1)
                 </code>
+                </pre>
             </section>
             <section>
                 <small>Setup Counter</small>
-                <code>
                     <pre>
-var (
-	pidCounter = prometheus.NewCounter(
-		prometheus.CounterOpts{
-			Name: "new_pid_count",
-			Help: "Counts the new pids created by system",
-		},
-	)
+                <code>
+pidCounter = prometheus.NewCounter(
+    prometheus.CounterOpts{
+        Name: "new_pid_count",
+        Help: "Counts the new pids created by system",
+    },
 )
+        </code>
                     </pre>
-                </code>
             </section>
             <section>
                 <small>Track data</small>
-                <code>
                     <pre>
+                <code>
 data.Pid = bcc.GetHostByteOrder().Uint32(payload)
 fmt.Printf("New process created: PID %d\n", data.Pid)
 pidCounter.Inc()
-
-                    </pre>
                 </code>
+                    </pre>
             </section>
             <section>
-                <small>
-                    Run server!
-                </small>
-                <img src="assets/server-running.png" />
+                <p>
+
+                    <small>
+                        Run server!
+                    </small>
+                </p>
+
+                <img style="max-height: 35vh" src="assets/server-running.png" />
             </section>
 
             <section>
@@ -1188,8 +1229,8 @@ pidCounter.Inc()
                     <small>
                         See results in prometheus
                     </small>
-                    <img src="assets/prom-console-go-pidtastrophy.png">
                 </p>
+                    <img style="max-height: 35vh;" src="assets/prom-console-go-pidtastrophy.png">
             </section>
             <section>
                 <p>
@@ -1197,8 +1238,8 @@ pidCounter.Inc()
                         Query them in prom
                     </small>
 
-                    <img src="assets/prom-console-query-go-pidtastrophy.png">
                 </p>
+                    <img style="max-height: 35vh;" src="assets/prom-console-query-go-pidtastrophy.png">
             </section>
             <section>
                 <p>
@@ -1206,11 +1247,11 @@ pidCounter.Inc()
                         Test that we're tracking stuff
                     </small>
                 </p>
-                <code>
                     <pre>
-                        for i in {1..1000}; do sleep 5 & done
-                    </pre>
+                <code>
+for i in {1..1000}; do sleep 5 & done
                 </code>
+                    </pre>
 
             </section>
             <section>
@@ -1219,16 +1260,16 @@ pidCounter.Inc()
                         Query again prom (to see spike)
                     </small>
 
-                    <img src="assets/prom-spike.png">
                 </p>
+                    <img style="max-height: 35vh" src="assets/prom-spike.png">
             </section>
             <section>
                 <p>
                     <small>
                         Graph them in grafana
                     </small>
-                    <img src="assets/grafana-go-pidtastrophy.png" >
                 </p>
+                    <img style="max-height: 35vh" src="assets/grafana-go-pidtastrophy.png" >
             </section>
             <section>
                 <p>
@@ -1237,6 +1278,30 @@ pidCounter.Inc()
                     </small>
                 </p>
             </section>
+
+            <section>
+                <p>
+                    Questions I had: how can I see what system calls I can observe?
+                </p>
+                <pre>
+                    <code>
+                        sudo cat /proc/kallsyms
+                    </code>
+                </pre>
+                <img style="max-height: 25vh;" src="assets/ksys.png" />
+            </section>
+            <section>
+                <p>
+                    Questions I had: How do I know what systemcalls a program / action uses? (strace)
+                </p>
+                <pre>
+                    <code>
+                        strace cat example.txt
+                    </code>
+                </pre>
+                <img style="max-height: 25vh;" src="assets/strace-example.png" />
+            </section>
+
             <section>
                <p>
                    I've setup all of the code to run 🤞with Vagrant, Ansible, Prom, Grafana with command if you want to play around
@@ -1263,6 +1328,11 @@ pidCounter.Inc()
             </section>
             <section>
                 <p>We are not beholden to BigTools to get insights (but they can help)</p>
+            </section>
+            <section>
+                <p>
+                    My favorite OSS tools for security observability: eBPF, Prometheus, Grafana
+                </p>
             </section>
             <section>
                 <p>Earlier I said relying on big signals is a cat and mouse game</p>
