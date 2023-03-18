@@ -27,14 +27,25 @@
         <section>
             <p>$ whoami</p>
             <section>
-                <h2>
-                    Ryan LaBouve
-                </h2>
-                <p>
-                <ul>
-                    <li>⚡️Founder of Startup.Security</li>
-                    <li>🌪️Disaster Recoverer<br><small>(storms not hard-drives)</small></li>
-                </ul>
+                <table>
+               <tr>
+                   <td>
+
+                       <h2>
+                           Ryan LaBouve
+                       </h2>
+                       <p>
+                           <small>(<span style="color: red;">@ryanlabouve</span>)</small>
+                       </p>
+                           <p>⚡️Founder of Startup.Security</p>
+                           <p>🌪️Disaster Recovery<br><small>(storms not hard-drives)</small></p>
+                   </td>
+                   <td>
+                       <img src="assets/disaster-ryan.png" style="max-height: 25vh">
+                   </td>
+               </tr>
+            </table>
+
             </section>
             <section>
                 <h2>
@@ -53,16 +64,16 @@
                 <ul>
                     <li>👇 Software engineer</li>
                     <li>👇 SRE (DevOps+SysAdmin)</li>
-                    <li>👉 Security Observability & Strategy</li>
+                    <li>👉 Security Observability & Tool maker</li>
                 </ul>
             </section>
             <section>
                 <h3>Modus Operindi Mei</h3>
-                <p>🧑‍🎓 First princples up</p>
+                <p>🧑‍🎓 First principles up</p>
                 <small>(Not big tools down)</small>
-                <p>🏕️ Bazzar > 🏰 Cathedral</p>
+                <p>🏕️ Bazaar > 🏰 Cathedral</p>
                 <small>(OSS > Closed source)</small>
-                <p>🎨 Shameless Iteration</p>
+                <p>🎨 Curiosity + Shameless Iteration</p>
                 <small>(We're going to be wrong a lot, but learn each time)</small>
             </section>
 
@@ -96,13 +107,13 @@
             <section style="text-transform: uppercase;">
                 <ol>
                     <li>
-                        <b>STORY MODE</b><br> <small>running into compromise</small>
+                        <b>STORY MODE</b><br> <small>signals to compromise</small>
                     </li>
                     <li>
-                        <b>Signals of compromise</b><br><small>philosophy and methodology</small>
+                        <b>Signals of compromise</b><br><small>philosophy to tactics</small>
                     </li>
                     <li>
-                        <b>Signals in the wild</b><br><small>Tactics & perspective</small>
+                        <b>Signals in the wild</b><br><small>conclusions & perspective</small>
                     </li>
                 </ol>
             </section>
@@ -127,11 +138,17 @@
             </section>
             <section>
                 <p>
+                    <h3>
+                Pique interest + Next steps > Comprehensive Coverage
+            </h3>
                     <small>
                         This is a big topic... talk will focus on concepts, demo techniques, and link to gnarly specifics (and I'm always happy to talk about this if you run into any problems)
                     </small>
                 </p>
                 <img style="max-height: 30vh" src="assets/travel-books.png">
+            </section>
+            <section>
+                🙇Thanks to the organizers!
             </section>
         </section>
 
@@ -141,7 +158,7 @@
 
         <section>
             <h2>
-                I: STORY MODE: RUNNING INTO SIGNS OF COMPROMISE
+                I: STORY MODE: SIGNALS TO COMPROMISE
             </h2>
         </section>
         <section>
@@ -272,9 +289,9 @@
             </section>
             <section>
                 <h3>How are we going to bring a firewall up?</h3>
-                <p>Identify everyday traffic</p>
-                <p>Identify maintence traffic</p>
-                <p>Identify deploy traffic</p>
+                <p>☑️ Understanding of service</p>
+                <p>☑️ Understanding of expected traffic</p>
+                <p>🔜Observe traffic</p>
                 <small>(Exercise 1)</small>
             </section>
         </section>
@@ -290,8 +307,16 @@
                 <p>We'll focus on TCP over UDP, ICMP, Other traffic</p>
             </section>
             <section>
-                <p><small>Successful 3-way handshake</small></p>
-                <img style="max-height: 40vh" src="./assets/3-way-handshake.png" />
+                <p><small>TCP, Successful 3-way handshake</small></p>
+                <pre>
+                    <code>
+{
+    HOST-DEST : SYN COUNT
+    HOST-DEST : SYN-ACK COUNT
+}
+                    </code>
+                </pre>
+                <img style="max-height: 20vh" src="./assets/3-way-handshake.png" />
             </section>
             <section>
                 <h4>Wireshark</h4>
@@ -354,14 +379,11 @@
             <section>
                 <h3>Unexpected E-W traffic</h3>
                 <p>No reason RBAC service should be talking to email service</p>
+                <p>No reason RBAC service should be talking directly to users as much</p>
             </section>
+
             <section>
-                <h3>SUS: Tracking traffic</h3>
-                <p>No reason RBAC service should be communicating to email service</p>
-            </section>
-            <section>
-                <h3>Novel vulnerabilty</h3>
-                <p>Doing data exfil</p>
+                <h3>SUS traffic + forensics <br> 👇<br>Novel vulnerability</h3>
             </section>
         </section>
 
@@ -371,33 +393,35 @@
         <!-- ############################################# -->
         <section>
             <h2>
-                II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY
+                II. SIGNALS OF COMPROMISE: PHILOSOPHY TO TACTICS
             </h2>
         </section>
         <section>
             <small>
-                II. SIGNALS OF COMPROMISE: PHILOSOPHY AND METHODOLOGY
+                II. SIGNALS OF COMPROMISE: PHILOSOPHY TO TACTICS
             </small>
+            <section>
+                Zooming out, what observed a signal of compromise
+            </section>
             <section>
                 <blockquote>Small signal can reveal quite a bit about a system</blockquote>
             </section>
+
             <section>
-                Zooming out, what we did is observe a potential signal of compromise
-            </section>
-            <section>
-                <h3>Classical approach for signals of compromise</h3>
+                <h3>Classical axis for signals of compromise</h3>
                 <ul>
-                    <li>
-                        Behavioral analysis
-                    </li>
                     <li>
                         Signature based detection (e.g. file names or metadata)
                     </li>
                     <li>
-                        Data-based learning (ML/AI/If statements)
+                        Threat Intelligence databases
+                    </li>
+
+                    <li>
+                        Behavioral analysis
                     </li>
                     <li>
-                        Threat Intelligence databases
+                        Data-based learning (ML/AI/If statements)
                     </li>
                 </ul>
             </section>
@@ -412,8 +436,17 @@
                 </p>
             </section>
             <section>
-                Big signals vs Small signals?</br>
-                Complex vs Fundamental?<br>
+                <h3>
+                    Goal: Nimble Security Observability
+                </h3>
+                <p>
+                    Additional Axis of signal size
+                </p>
+                <p>
+                    Big signals vs Small signals?</br>
+                    Complex vs Fundamental?<br>
+                    Moleculer vs Atomic signals?
+                </p>
             </section>
 
         </section>
@@ -435,7 +468,7 @@
             </section>
 
             <section>
-                <small>Signature based detection,Cobalt strike beacon implant </small>
+                <small>Patterns in named pipes</small>
                 <small>
                     "identifies an adversary using a Cobalt Strike beacon implant to pivot and issue commands over SMB through the use of configurable named pipes..."
                 </small>
@@ -454,13 +487,15 @@ file_modifications_include ('pipe\msagent_', \
                 </small>
             </section>
             <section>
-                <small>Another signature based detection of Cobalt Strike</small>
                 <p>
-                    Rundll32.exe to span SQL Server Client Configuration Utility
+                    specific pattern of process execution
                 </p>
-                <small>
-                    "identifies instances of rundll32.exe spawning the SQL Server Client Configuration Utility (cliconfg.exe). We often see this pattern of process execution when Cobalt Strike leverages DLL Search Order Hijacking as a method of UAC bypass."
-                </small>
+                <p>
+                    <small>
+                        "identifies instances of rundll32.exe spawning the SQL Server Client Configuration Utility (cliconfg.exe). We often see this pattern of process execution when Cobalt Strike leverages DLL Search Order Hijacking as a method of UAC bypass."
+                    </small>
+                </p>
+
                 <pre>
 <code>
     parent_process == rundll32.exe
@@ -477,7 +512,7 @@ file_modifications_include ('pipe\msagent_', \
             </section>
             <section>
                 <small>
-                    Command-line patterns for cobalt strike beacons via GetSystem
+                    Command-line patterns of GetSystem
                 </small>
                 <pre>
 <code>
@@ -503,7 +538,12 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 </small>
             </section>
             <section>
-                This is a game of cat a mouse
+                <h3>
+                    This is a game of cat a mouse
+                </h3>
+                <p>
+                    <strike>NaughtyProcess.exe</strike><br> Nåught¥Pr0ce55.exe
+                </p>
             </section>
         </section>
         <section>
@@ -513,8 +553,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 and describe it using small signals
             </section>
             <section>
-                <small>tool for hunting</small>
-                <h3>"Fundamental signal"</h3>
+                <h3>"Atomic signal"</h3>
                 <p>
                     A granular observable event on a system. E.g. system call.
                 </p>
@@ -590,7 +629,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                     way to collect them => prometheus
                 </li>
                 <li>
-                    way to vizualize them => grafana
+                    way to visualize them => grafana
                 </li>
                 <li>
                     way to query/compose them => prometheus
@@ -602,13 +641,10 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                     eBPF (for Snooping Syscalls)
                 </h3>
                 <p>
-                    Run user code in the kernal
+                    Setup probes on calls we're interested in and provide bridge for that data back to user space
                 </p>
-                <p>
-                    Many popular tools use eBPF to observe systems (e.g. Crowdstrike Falcon)
-                </p>
-            </section>
 
+            </section>
             <section>
                 <p>
                     How we use eBPF?
@@ -658,26 +694,44 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             </section>
 
             <section>
-                <small>How we collect data on system calls? Prometheus</small>
-                <img style="max-height: 40vh" src="assets/prom-console-go-pidtastrophy.png" />
+                <p><small>Using Prometheus: already using for observability. Perfect to store syscall heuristics</small></p>
+                <blockquote>
+                    <small>
+                        Prometheus employs a highly efficient, custom-built time-series database that is optimized for storing and retrieving large amounts of metric data with minimal overhead
+                    </small>
+                </blockquote>
+                <img style="max-height: 20vh" src="assets/prom-console-go-pidtastrophy.png" />
             </section>
             <section>
-                <small>
-                    Grafana:  Can be used to visualize eBPF data
-                </small>
-                <img  style="max-height: 40vh" src="assets/grafana-go-pidtastrophy.png" />
+                <p>
+                    <small>
+                        Grafana:  Can be used to visualize eBPF data
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        Native prometheus integration
+                    </small>
+                </p>
+
+                <img  style="max-height: 25vh" src="assets/grafana-go-pidtastrophy.png" />
             </section>
-            <section>
-                <small>Prometheus Query Language</small>
-                <img  style="max-height: 40vh" src="assets/prom-console-query-go-pidtastrophy.png" />
-            </section>
+
             <section>
                 <p>Prometheus Query Language</p>
+                <blockquote>
+                    PromQL, you can filter, aggregate, and calculate rates or quantiles across different dimensions, such as labels and time ranges
+                </blockquote>
                 <pre>
                 <code>
 rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 </code>
                     </pre>
+            </section>
+
+            <section>
+                <p><small>Prometheus Query Language</small></p>
+                <img  style="max-height: 25vh" src="assets/prom-console-query-go-pidtastrophy.png" />
             </section>
     </section>
         <section>
@@ -692,12 +746,9 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             <section>
                 Let's see how we can detect ex-fill from small signals
             </section>
-            <section>
-                Exfill is someone moving your files
-            </section>
 
             <section>
-                <h4>Everything's a file on linux tho</h4>
+                <h4>🚨Everything's a file on linux tho 🚨</h4>
                 <p>
                     Files are the building blocks of linux systems
                 </p>
@@ -798,9 +849,6 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         </td>
                     </tr>
                 </table>
-                <aside class="speaker-notes">
-                    System calls are a fundamental interface between a user-space application and the Linux kernel. They allow user programs to request services from the kernel, such as file I/O, process management, memory management, and more. When it comes to Linux files, several important system calls facilitate file manipulation and I/O operations:
-                </aside>
             </section>
             <section>
                 <p>
@@ -851,6 +899,16 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             </section>
             <section>
                 <p>Setting up a probe on `read()`'s, and tracking reads by PID might be a good answer</p>
+                <p>
+                    <small>
+                        Data storage minimal
+                    </small>
+                </p>
+                <pre>
+                <code>
+                       { [pid] : [count] }
+                </code>
+                    </pre>
             </section>
             <section>
                 <p>
@@ -868,7 +926,7 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         File creation and deletion
                     </li>
                     <li>
-                       Proccess level access
+                       Process level access
                     </li>
                     <li>
                        Sensitive data access
@@ -900,8 +958,12 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             </section>
             <section>
 
+                <p>
+                    <small>
+                        Where should we focus?
+                    </small>
+                </p>
                 <table>
-
                     <tr>
                         <td style="font-size: 25px">
                             👇 Application
@@ -981,7 +1043,9 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             </section>
             <section>
                 <p>
-                    This process uses many syscalls
+                    <small>
+                        This process uses many syscalls
+                    </small>
                 </p>
                 <table>
                     <tr>
@@ -1343,8 +1407,18 @@ for i in {1..1000}; do sleep 5 & done
                 <p>We are not beholden to BigTools to get insights (but they can help)</p>
             </section>
             <section>
+                <h3>Observing small signals can help us solve big problems</h3>
+                <p>Not just hunting for problems</p>
+                <p>But originally helping us confidently stand up a firewall</p>
+            </section>
+            <section>
                 <p>
                     My favorite OSS tools for security observability: eBPF, Prometheus, Grafana
+                </p>
+            </section>
+            <section>
+                <p>
+                    My belief: we'll see evolutions of new and interesting security tools built on eBPF
                 </p>
             </section>
             <section>
