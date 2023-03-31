@@ -98,16 +98,11 @@
         </section>
         <section>
             <small>Today's Agenda</small>
-            <section>
-                <small>My main argument</small>
-                <blockquote>
-                    Understanding fundamental signals from Linux gives us insight to compromise.
-                </blockquote>
-            </section>
+
             <section style="text-transform: uppercase;">
                 <ol>
                     <li>
-                        <b>STORY MODE</b><br> <small>signals to compromise</small>
+                        <b>STORY MODE</b><br> <small>my intro to signals to compromise</small>
                     </li>
                     <li>
                         <b>Signals of compromise</b><br><small>philosophy to tactics</small>
@@ -133,13 +128,13 @@
                 <h4>Intermediate / Advanced Practitioner</h4>
                 <p>
                     Convince you that having the ability to ask your system specific questions,
-                    without relying on big tools is a superpower (and cool tools to do so).
+                    without relying on <i>external</i> tools is a superpower. (And go over my favorite tools)
                 </p>
             </section>
             <section>
                 <p>
                     <h3>
-                Pique interest + Next steps > Comprehensive Coverage
+                (interest++ && next_steps) > ComprehensiveCoverage
             </h3>
                     <small>
                         This is a big topic... talk will focus on concepts, demo techniques, and link to gnarly specifics (and I'm always happy to talk about this if you run into any problems)
@@ -242,11 +237,8 @@
                 </p>
             </section>
             <section>
-                <h3>Infra at hyperion</h3>
+                <h3>General traffic at hyperion</h3>
                 <img src="./assets/ns-ew.png" style="width: 50%;" alt="Infra at hyperion"/>
-                <p>
-                    Traffic Flow
-                </p>
             </section>
             <section>
                 <h4>Traffic patterns for RBAC service</h4>
@@ -255,7 +247,7 @@
                 </p>
             </section>
             <section>
-                <h3>RBAC service at hyperion</h3>
+                <h3>RBAC purpose at hyperion</h3>
                 <p>
                     <img src="./assets/rbac-service.png" style="width: 50%;" alt="Infra at hyperion"/>
                 </p>
@@ -263,7 +255,7 @@
 
 
             <section>
-                <h4>Technical Review of RBAC service</h4>
+                <h4>Communicating w/RBAC service</h4>
                 <p>
                     rbac.hyperion.boop/api/v1/authorize?user_id=1&resource_id=2&action=3
                 </p>
@@ -288,10 +280,10 @@
                     poison Redis cache
                 </p>
                 <p>
-                    Exfil the data
+                    exfil the data
                 </p>
                 <p>
-                    Move laterally
+                    move laterally
                 </p>
             </section>
             <section>
@@ -308,18 +300,20 @@
                 I. STORY MODE: (EXERCISE) SYN / SYN-ACK's
             </small>
             <section>
-                <h3>Our First Signals: SYN / SYN-ACK's</h3>
+                <h3>Our First Signals: <br/>SYN / SYN-ACK's</h3>
             </section>
             <section>
                 <p>We'll focus on TCP over UDP, ICMP, Other traffic</p>
             </section>
             <section>
-                <p><small>TCP, Successful 3-way handshake</small></p>
+                <p><small>Counter for TCP, Successful (enough) handshake</small></p>
                 <pre>
                     <code>
 {
-    HOST-DEST : SYN COUNT
-    HOST-DEST : SYN-ACK COUNT
+    [HOST-DEST] : SYN COUNT,
+    [HOST-DEST] : SYN-ACK COUNT,
+    [HOST-DEST2] : SYN COUNT,
+    [HOST-DEST2] : SYN-ACK COUNT,
 }
                     </code>
                 </pre>
@@ -347,13 +341,29 @@
             <section>
                 <h4>
                     eBPF
-                </h3>
+                </h4>
                 <blockquote>
-                    eBPF is a virtual machine that runs in the kernel and allows you to write programs that
-                    can be attached to various kernel hooks.
+                        eBPF is a virtual machine that runs in the kernel and allows you to write programs that
+                        can be attached to various kernel hooks.
                 </blockquote>
 
                 <img style="max-height: 20vh" src="./assets/ebpf.png" />
+            </section>
+            <section>
+                <h4>
+                    eBPF (con't)
+                </h4>
+                <blockquote>
+                    <small>
+                    "Current monitoring solutions often use loadable kernel modules to provide visibility... However, such modules intorduce their own risk of kernel bugs and vulnerabilities.
+                        </small>
+                </blockquote>
+                <p>
+                    <small>
+                        BPF programs are verified and have better guard rails. And don't require you to mess with custom kernel stuff™.
+                    </small>
+                </p>
+
             </section>
 
             <section>
@@ -380,7 +390,7 @@
                 I/iii. STORY MODE: A TWIST IN TRAFFIC
             </small>
             <section>
-                <h3>After monitoring SYN / SYN-ACK's for a week</h3>
+                <h3>After monitoring <br/>SYN / SYN-ACK's for a week</h3>
                 <p>Noticed something weird</p>
             </section>
             <section>
@@ -411,6 +421,7 @@
                 Zooming out, what observed a signal of compromise
             </section>
             <section>
+                <p><small>My quiet revelation:</small></p>
                 <blockquote>Small signal can reveal quite a bit about a system</blockquote>
             </section>
 
@@ -423,7 +434,6 @@
                     <li>
                         Threat Intelligence databases
                     </li>
-
                     <li>
                         Behavioral analysis
                     </li>
@@ -436,23 +446,34 @@
                 <small>
                     My take from SRE land
                 </small>
-                <h3>Monitoring vs Observability</h3>
-                <p>Monitoring -> I can collect all the exhaust from a system</p>
-                <p>
-                    Observability -> I can understand the system based on certain event
-                </p>
+                <h4>Monitoring vs Observability</h4>
+                <table>
+                    <tr>
+                        <td>
+                            Monitoring→
+                        </td>
+                        <td>
+                             collect exhaust from a system <br>(e.g. logs from my webserver)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Observability→
+                        </td>
+                        <td>
+                            understand system on outputs <br>(e.g. P99 latency)
+                        </td>
+                    </tr>
+                </table>
             </section>
             <section>
-                <h3>
-                    Goal: Nimble Security Observability
-                </h3>
-                <p>
-                    Additional Axis of signal size
-                </p>
+                <h4>
+                    Characterizing the signals we have, another axis
+                </h4>
                 <p>
                     Big signals vs Small signals?</br>
                     Complex vs Fundamental?<br>
-                    Moleculer vs Atomic signals?
+                    High level vs low level?<br>
                 </p>
             </section>
 
@@ -560,13 +581,11 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 and describe it using small signals
             </section>
             <section>
-                <h3>"Atomic signal"</h3>
+                <h3>low-level signal</h3>
                 <p>
-                    A granular observable event on a system. E.g. system call.
+                    A granular observable event on a system.( I.e. system call.)
                 </p>
-                <p>
-                    Event
-                </p>
+
             </section>
             <section>
                 <h4>
@@ -654,20 +673,50 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             </section>
             <section>
                 <p>
-                    How we use eBPF?
+                    How we use eBPF? (the _easy_ way)
                 </p>
                 <table>
                     <tr>
+                        <td style="font-size: 36px">
+                            BCC (bpf compiler collection)
+                        </td>
+                        <td style="font-size: 26px;">
+                            Toolkit that provides high-level pre-built tools and libraries for creating and analyzing BPF programs
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 36px">
+                            BPFTool
+                        </td>
+                        <td style="font-size: 26px;">
+                            CLI utility included with linux for interacting with BPF
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 36px">
+                            Cilium
+                        </td>
+                        <td style="font-size: 26px;">
+                            BPF project to create network policies, inspect network traffic, general observability
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section>
+                <p>
+                    How we use eBPF? (The hard way, DIY!)
+                </p>
+                <table>
                         <td style="font-size: 30px;">
-                            1. Write eBPF program
+                            1.Write&nbsp;Program
                         </td>
                         <td style="font-size: 14px;">
-                            Restricted C, defines probes (i.e. which calls you want to watch), these programs can collect / expose data you're interested in (via helpers like BPF maps
+                            libbpf, Restricted C, defines probes (i.e. which calls you want to watch), these programs can collect / expose data you're interested in (via helpers like BPF maps
                         </td>
                     </tr>
                     <tr>
                         <td style="font-size: 30px;">
-                            2. Compile the program
+                            2. Compile
                         </td>
                         <td style="font-size: 14px;">
                             using the clang compiler with the appropriate flags and target architecture, generates eBPF byte code, performs some saftey checks
@@ -675,7 +724,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                     </tr>
                     <tr>
                         <td style="font-size: 30px;">
-                            3. Load programs
+                            3.&nbsp;Load&nbsp;programs
                         </td>
                         <td style="font-size: 14px;">
                             Using language like C, Python, Go, etc... attach code to kernel. Manage lifecycle of program
@@ -918,6 +967,27 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                     </pre>
             </section>
             <section>
+                <p>Or if you happen to know bpf tools, you could use `opensnoop`</p>
+                <pre>
+                    <code># ./opensnoop
+Tracing open()s. Ctrl-C to end.
+COMM             PID      FD FILE
+[...]
+sshd             6503     -1 /usr/share/ssh/blacklist.RSA-2048
+sshd             6503     -1 /etc/ssh/blacklist.RSA-2048
+sshd             6503    0x4 /root/.ssh/authorized_keys
+sshd             6503     -1 /var/run/nologin
+sshd             6503     -1 /etc/nologin
+sshd             6503    0x4 /etc/passwd
+sshd             6503    0x4 /etc/shadow
+sshd             6503    0x4 /etc/localtime
+sshd             6503    0x4 /etc/security/capability.conf
+sshd             6503    0x4 /etc/login.defs
+                    </code>
+                </pre>
+                <p><small>Code example from Brendan Gregg's blog: <a href="https://www.brendangregg.com/blog/2014-07-25/opensnoop-for-linux.html">opensnoop for Linux</a></small></p>
+            </section>
+            <section>
                 <p>
                     We can go through a similar exercise to figure things like:
                 </p>
@@ -942,6 +1012,40 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                          File locks
                     </li>
                 </ul>
+            </section>
+            <section>
+                <h4>
+                    Zero-day → Detection
+                </h4>
+                <blockquote>
+                    The attack allows a user to potentially gain read and write access to any path on the host system as root
+                </blockquote>
+                <img style="max-height: 30vh" src="assets/sec-lists.png" />
+            </section>
+            <section>
+                <h4>
+                    Zero-day → Detection
+                </h4>
+
+                <p>
+                    This vuln relies on a very uncommon invocation of <code>renameat2(2)</code>, which we can monitor
+                    with bpftrace
+                </p>
+
+                <pre>
+    <code>bpftrace -e 't:syscalls:sys_enter_renameat2
+    /args->flags == 2 / {
+        time();
+        printf("%s RENAME_EXCHANGE %s <-> %s\n",
+                comm, str(args->oldname), str(args->newname)); }'
+</code>
+                </pre>
+                <p>
+                    Typically no output on system. Flood of traffic would indicate exposure
+                </p>
+                <small>
+                    [BPF Performance Tools 2020, Gregg]
+                </small>
             </section>
 
         </section>
@@ -1216,7 +1320,33 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                 </p>
             </section>
             <section>
-                Let's see this in action
+                <h4>Good news! There's a tool for you (the full thing <a href="https://github.com/brendangregg/bpf-perf-tools-book/blob/master/originals/Ch10_Networking/soconnect.bt">here</a>)</h4>
+                <pre>
+                    <code>tracepoint:syscalls:sys_enter_connect
+/args->uservaddr->sa_family == AF_INET ||
+    args->uservaddr->sa_family == AF_INET6/
+{
+	@sockaddr[tid] = args->uservaddr;
+	@start[tid] = nsecs;
+}
+                    </code>
+                </pre>
+            </section>
+            <section>
+                <p>
+                    <code><a href="https://github.com/brendangregg/bpf-perf-tools-book/blob/master/originals/Ch10_Networking/soconnect.bt">soconnect.bt</a></code> instruments the <code>connect(2)</code>a syscall tracepoints
+                </p>
+                <pre>
+                    <code>soconnect.bt
+
+Attaching 4 probes...
+PID     PROCESS     FAM ADDRESS     PORT    LAT(us)     RESULT
+1148    ssh         2   127.0.0.1   22           43     Success
+                    </code>
+                </pre>
+            </section>
+            <section>
+                Let's see (observation + visualization + querying) in action together
             </section>
         </section>
 
@@ -1236,7 +1366,10 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
                         Collect stats on new PIDs created
                     </li>
                     <li>
-                        Vizualize and query data
+                       👉 where we have complete control over data
+                    </li>
+                    <li>
+                        Visualize and query data
                     </li>
                 </ul>
             </section>
@@ -1380,6 +1513,16 @@ for i in {1..1000}; do sleep 5 & done
                 </pre>
                 <img style="max-height: 25vh;" src="assets/strace-example.png" />
             </section>
+            <section>
+                <h4>
+                    Questions I had: How to subvert BFP
+                </h4>
+
+                <p>
+                    Under extreme load, the BFP out buffers and maps can be overrun. Causing a loss in recorded data. BPF knows this is happening and can alert on it.
+                </p>
+
+            </section>
 
             <section>
                <p>
@@ -1420,7 +1563,7 @@ for i in {1..1000}; do sleep 5 & done
             </section>
             <section>
                 <p>
-                    My favorite OSS tools for security observability: eBPF, Prometheus, Grafana
+                   ❤️ eBPF, Prometheus, Grafana ❤️
                 </p>
             </section>
             <section>
@@ -1428,13 +1571,7 @@ for i in {1..1000}; do sleep 5 & done
                     My belief: we'll see evolutions of new and interesting security tools built on eBPF
                 </p>
             </section>
-            <section>
-                <p>Earlier I said relying on big signals is a cat and mouse game</p>
-                <p>Trying to break new vulns using small signals is a ghost hunt</p>
-            </section>
-            <section>
 
-            </section>
             <section>
                 <p>Happy hunting</p>
             </section>
