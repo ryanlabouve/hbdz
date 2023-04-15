@@ -131,6 +131,15 @@
                     without relying on <i>external</i> tools is a superpower. (And go over my favorite tools)
                 </p>
             </section>
+
+            <section>
+                <small>What you'll get out of this</small>
+                <h4>Windows Users?</h4>
+                <p>
+                    One of the main linux-specific tools I discuss (eBPF) is coming to Windows! <br>
+                </p>
+                <a href="https://github.com/microsoft/ebpf-for-windows">🔗 ebpf-for-windwos on github</a>
+            </section>
             <section>
                 <p>
                     <h3>
@@ -652,13 +661,13 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                     Snoop syscalls => eBPF
                 </li>
                 <li>
-                    way to collect them => prometheus
+                    way to collect data => prometheus
                 </li>
                 <li>
-                    way to visualize them => grafana
+                    way to visualize data => grafana
                 </li>
                 <li>
-                    way to query/compose them => prometheus
+                    way to query/compose data => prometheus
                 </li>
                 </ul>
             </section>
@@ -669,7 +678,51 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                 <p>
                     Setup probes on calls we're interested in and provide bridge for that data back to user space
                 </p>
+            </section>
+            <section>
+                <h3>Why eBPF?</h3>
+                <ul>
+                    <li>x-ray vision into our system</li>
+                    <li>high performance</li>
+                    <li>safe and dynamic way to load code into kernel</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Origins of eBPF</h3>
+                <p>Originally BPF "berkley packet filter"</p>
+                <p>
+                    Introduced 1997 in kernel version 2.1.75
+                </p>
+                <p>32-bit instruction set to fiddle with packets (filters out non IP packets)</p>
 
+<pre>
+<code>ldh    [12]
+jeq    #ETHERTYPE_IP, IP, L1, L2
+L1:    ret    #TRUE
+L2:    ret    #0
+</code>
+</pre>
+                <p><small>Example from Learning eBPF by Liz Rice</small></p>
+            </section>
+            <section>
+                <h3>Evolution of eBPF</h3>
+                <ul>
+                    <li>eBPF maps (datastructures to share data from eBPF to user-land)</li>
+                    <li>eBPF system call + helper function</li>
+                    <li>Verifier for saftey</li>
+                    <li>kprobes</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Modern eBPF</h3>
+                <ul>
+                    <li>
+                        "Every single packet to Facebook.com since 2017 has bassed through eBPF/XDP"
+                    </li>
+                    <li>
+                        Even in a Cloud Native, highly orchestrated environment, eBPF is able to provide visibility into the system (e.g. in Container / Kubernetes land)
+                    </li>
+                </ul>
             </section>
             <section>
                 <p>
@@ -701,6 +754,30 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
                         </td>
                     </tr>
                 </table>
+            </section>
+            <section>
+                <h3>Hello eBPF</h3>
+<pre>
+<code>#!/usr/bin/python
+from bcc import BPF
+program = r"""
+int hello(void *ctx) {
+    bpf_trace_printk("Hello, World!\\n");
+    return 0;
+}
+"""
+
+b = BPF(text=program)
+syscall = b.get_syscall_fnname("execve")
+b.attach_kprobe(event=syscall, fn_name="hello")
+b.trace_print()
+</code>
+</pre>
+                <p>
+                    <small>
+                        Example from Learning eBPF by Liz Rice
+                    </small>
+                </p>
             </section>
             <section>
                 <p>
@@ -750,7 +827,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             </section>
 
             <section>
-                <p><small>Using Prometheus: already using for observability. Perfect to store syscall heuristics</small></p>
+                <p><small>Collect via Prometheus: already using for observability. Perfect to store syscall heuristics</small></p>
                 <blockquote>
                     <small>
                         Prometheus employs a highly efficient, custom-built time-series database that is optimized for storing and retrieving large amounts of metric data with minimal overhead
@@ -761,7 +838,7 @@ C:\Windows\system32\cmd.exe /c echo 92d8cc45954 >; \\.\pipe\446b3c
             <section>
                 <p>
                     <small>
-                        Grafana:  Can be used to visualize eBPF data
+                        Visualize vs Grafana:  Can be used to visualize eBPF data
                     </small>
                 </p>
                 <p>
@@ -786,8 +863,16 @@ rate(new_pid_count{instance="100.93.243.38:2112"}[1m])
             </section>
 
             <section>
-                <p><small>Prometheus Query Language</small></p>
+                <p><small>Result for querying rate of new PID creation from previous PromQL</small></p>
                 <img  style="max-height: 25vh" src="assets/prom-console-query-go-pidtastrophy.png" />
+            </section>
+            <section>
+                <p>Prometheus Query Language (across the fleet)</p>
+                <pre>
+                    <code>
+ ec2_tags{environment="production", host_type=~"webserver|api"}
+                    </code>
+                </pre>
             </section>
     </section>
         <section>
@@ -1320,7 +1405,7 @@ sshd             6503    0x4 /etc/login.defs
                 </p>
             </section>
             <section>
-                <h4>Good news! There's a tool for you (the full thing <a href="https://github.com/brendangregg/bpf-perf-tools-book/blob/master/originals/Ch10_Networking/soconnect.bt">here</a>)</h4>
+                <h4>Tracking with `connect()` w/BPF! (the full thing <a href="https://github.com/brendangregg/bpf-perf-tools-book/blob/master/originals/Ch10_Networking/soconnect.bt">here</a>)</h4>
                 <pre>
                     <code>tracepoint:syscalls:sys_enter_connect
 /args->uservaddr->sa_family == AF_INET ||
@@ -1568,7 +1653,7 @@ for i in {1..1000}; do sleep 5 & done
             </section>
             <section>
                 <p>
-                    My belief: we'll see evolutions of new and interesting security tools built on eBPF
+                    My belief: we'll continue to see radical evolutions of new and interesting security/networking/observability tools built on eBPF.
                 </p>
             </section>
 
